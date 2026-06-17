@@ -1,0 +1,15 @@
+[project]
+name = "javalang-py-gcs"
+version = "0.1.0"
+description = "Implementação em Python de classes inspiradas em String, Integer e Float do Java SE 8"
+requires-python = ">=3.10"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.coverage.run]
+source = ["javalang"]
