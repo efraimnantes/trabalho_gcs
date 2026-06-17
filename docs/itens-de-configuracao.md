@@ -1,16 +1,13 @@
-# Itens de Configuração
+# Itens de Configuração do Projeto
 
-Este documento identifica os principais itens de configuração do projeto.
+Este documento lista os principais itens de configuração (ICs) controlados ao longo do ciclo de vida do projeto.
 
-| Item | Responsável | Formato | Periodicidade de mudança | Dependências |
-|---|---|---|---|---|
-| Classe JString | Pessoa 1 | Python | Alta | Testes de JString |
-| Classe JInteger | Pessoa 2 e Pessoa 4 | Python | Alta | Testes de JInteger |
-| Classe JFloat | Pessoa 3 e Pessoa 5 | Python | Alta | Testes de JFloat |
-| Testes automatizados | Pessoa 2 | Python/pytest | Alta | Código das classes |
-| README.md | Pessoa 1 | Markdown | Média | Decisões da equipe |
-| Documentação de adaptações | Pessoa 3 e Pessoa 5 | Markdown | Média | Métodos não implementados |
-| ADRs | Pessoa 3 | Markdown | Baixa | Decisões arquiteturais |
-| Workflow de CI | Pessoa 2 | YAML | Média | pytest, ruff e coverage |
-| Relatórios de status | Pessoa 4 | Markdown | A cada baseline | Issues, PRs e releases |
-| Auditoria final | Pessoa 3 | Markdown | Final do projeto | Histórico do GitHub |
+| Item de Configuração | Responsável | Formato | Periodicidade de Mudança | Dependências |
+| :--- | :--- | :--- | :--- | :--- |
+| **Módulo JString** | Mantenedor / Equipe | `.py` (Código Python) | Contínua (v0.4) | `adaptacoes.md`, ADRs |
+| **Módulo JInteger** | Eng. de Qualidade | `.py` (Código Python) | Contínua (v0.2) | `adaptacoes.md`, ADRs |
+| **Módulo JFloat** | Gerente de Config. | `.py` (Código Python) | Contínua (v0.3) | `adaptacoes.md`, ADRs |
+| **Suíte de Testes (pytest)** | Eng. de Qualidade | `.py` (Código Python) | A cada novo método | Código fonte das classes |
+| **Documentos de Decisão (ADRs)** | Gerente de Config. | `.md` (Markdown) | Sob demanda | Arquitetura geral |
+| **Doc. de Adaptações Python/Java** | Gerente de Config. | `.md` (Markdown) | Sob demanda | Especificação Java SE 8 |
+| **Configuração de CI (GitHub Actions)** | Eng. de Qualidade | `.yml` (YAML) | Baixa (configuração inicial) | GitHub |
