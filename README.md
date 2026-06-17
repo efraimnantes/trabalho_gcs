@@ -27,6 +27,8 @@ O objetivo é implementar, em Python 3.10+, classes inspiradas nas classes `Stri
 pytest
 
 ```
+## Documentação e Decisões Técnicas
+Para entender as diferenças arquiteturais e os motivos pelos quais alguns métodos foram adaptados, consulte nossa [Documentação de Adaptações Java para Python](docs/adaptacoes.md).
 
 ## Como executar o linter
 ```bash
