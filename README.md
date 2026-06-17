@@ -1,3 +1,4 @@
+
 # JavaLang Python - GCS 2026.1
 
 Projeto final da disciplina de Gerência de Configuração de Software.
