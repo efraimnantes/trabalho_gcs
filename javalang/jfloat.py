@@ -1,4 +1,5 @@
 class JFloat:
-    """Representa uma adaptação da classe Float do Java SE 8."""
+    """Adaptação inicial da classe Float do Java SE 8."""
 
-    pass
+    def __init__(self, value=0.0):
+        self.value = float(value)   

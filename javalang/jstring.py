@@ -1,4 +1,5 @@
 class JString:
-    """Representa uma adaptação da classe String do Java SE 8."""
+    """Adaptação inicial da classe String do Java SE 8."""
 
-    pass
+    def __init__(self, value=""):
+        self.value = str(value)

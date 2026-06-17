@@ -1,4 +1,5 @@
 class JInteger:
-    """Representa uma adaptação da classe Integer do Java SE 8."""
+    """Adaptação inicial da classe Integer do Java SE 8."""
 
-    pass
+    def __init__(self, value=0):
+        self.value = int(value)
