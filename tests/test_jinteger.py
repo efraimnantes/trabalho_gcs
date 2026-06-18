@@ -7,7 +7,7 @@ def test_jinteger_constants():
     assert JInteger.MIN_VALUE == -2147483648
     assert JInteger.SIZE == 32
     assert JInteger.BYTES == 4
-    assert JInteger.TYPE == int
+    assert JInteger.TYPE is int
 
 def test_jinteger_creation_with_int():
     obj = JInteger(100)
