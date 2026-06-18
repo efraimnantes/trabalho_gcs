@@ -18,3 +18,8 @@ Alguns comportamentos da linguagem Java não possuem equivalência direta em Pyt
 | JString | String(StringBuilder) | Não implementado | Python não possui StringBuilder nativo equivalente | Usar `str()` |
 | JString | intern() | Adaptado/documentado | O pool de strings do Java não se aplica diretamente ao runtime Python | Usar a string normalmente |
 | JString | getBytes(String charset) | Adaptado | Python utiliza encoding por string, como UTF-8 | Usar `encode(encoding)` |
+
+# Adaptações da Especificação Java para Python
+
+## JInteger
+- **TYPE**: No Java, `Integer.TYPE` retorna a classe que representa o tipo primitivo `int`. No ambiente Python, adaptámos esta constante para retornar diretamente o tipo embutido `int`.
