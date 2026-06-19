@@ -23,3 +23,6 @@ Enquanto o Java diferencia tipos primitivos (`int`, `float`) de classes *wrapper
 | :--- | :--- | :--- | :--- |
 | `JString` | `intern()` | A definir | Dificuldade em replicar a String Pool da JVM exatamente. Avaliando `sys.intern()`. |
 | `JInteger` | `parseInt(String s)` | Adaptado | Lida com exceções `ValueError` do Python para emular `NumberFormatException`. |
+
+### Formatação de Bases (toBinaryString, toOctalString, toHexString)
+- **Representação de Negativos**: Em Java, a conversão de negativos para string nestas bases retorna a representação *unsigned* de 32 bits em complemento de dois. Como o Python utiliza precisão arbitrária e representa negativos com um simples sinal (ex: `-0x1`), foi aplicada uma máscara bit a bit de 32 bits (`i & 0xFFFFFFFF`) para replicar a saída exata da especificação Java. Além disso, o prefixo padrão do Python (`0b`, `0o`, `0x`) foi fatiado (`[2:]`) para corresponder à ausência de prefixos do Java.
