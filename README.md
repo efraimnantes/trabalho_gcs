@@ -29,6 +29,9 @@ Essa organização separa código, testes, documentação e automação, facilit
 - `JInteger`
 - `JFloat`
 
+
+## Funcionalidades
+- Suporte à classe `JFloat` com validações IEEE 754 e conversões.
 ## Processo de GCS
 
 A equipe utiliza um fluxo baseado em GitHub Flow para controlar as alterações do projeto.
