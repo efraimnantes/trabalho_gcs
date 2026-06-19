@@ -29,6 +29,40 @@ Essa organização separa código, testes, documentação e automação, facilit
 - `JInteger`
 - `JFloat`
 
+## Processo de GCS
+
+A equipe utiliza um fluxo baseado em GitHub Flow para controlar as alterações do projeto.
+
+O processo adotado é:
+
+`Issue → Branch → Commit → Pull Request → Review → Merge`
+
+### Regras principais
+
+* Toda alteração relevante deve estar vinculada a uma issue.
+* Cada issue deve possuir uma branch própria.
+* Os commits devem seguir padrão semântico e referenciar a issue com `refs #N`.
+* A descrição do Pull Request deve conter `Closes #N`.
+* Nenhum integrante deve aprovar o próprio Pull Request.
+* Commits diretos na branch `main` não devem ocorrer após o bootstrap inicial.
+* Pull Requests devem ser revisados antes do merge.
+* Pull Requests devem estar com o CI verde antes do merge.
+* Um commit não deve implementar mais de 3 métodos.
+* Uma Pull Request não deve implementar mais de 7 métodos.
+
+### Baselines
+
+O projeto está organizado nas seguintes baselines:
+
+* `v0.1-functional`: estrutura inicial, documentação base, CI, papéis, itens de configuração e processo de trabalho;
+* `v0.2-jinteger`: implementação e testes da classe `JInteger`;
+* `v0.3-jfloat`: implementação e testes da classe `JFloat`;
+* `v0.4-jstring`: implementação e testes da classe `JString`;
+* `v1.0.0`: entrega final, auditorias, apresentação gravada e release final.
+
+As baselines devem ser acompanhadas por relatórios de status, issues resolvidas, Pull Requests mesclados, CI verde e tags/releases no GitHub.
+    
+
 ## Organização da equipe
 
 | Integrante | Papel | Responsabilidades |
