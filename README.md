@@ -3,7 +3,7 @@
 
 Projeto final da disciplina de Gerência de Configuração de Software.
 
-O objetivo é implementar, em Python 3.10+, classes inspiradas nas classes `String`, `Integer` e `Float` da especificação Java SE 8.
+O objetivo é implementar, em Python 3.10+, classes inspiradas nas classes `JString`, `JInteger` e `JFloat` da especificação Java SE 8.
 
 ## Classes do projeto
 
@@ -16,10 +16,10 @@ O objetivo é implementar, em Python 3.10+, classes inspiradas nas classes `Stri
 | Integrante | Papel | Responsabilidades |
 |---|---|---|
 | Efraim Nantes | Mantenedor | Criação do repositório, proteção da branch main, criação de tags e releases, revisão de PRs e implementação de métodos da JString. |
-| Pessoa 2 | Engenheiro de Qualidade | Configuração da CI, testes, cobertura e implementação de métodos da JInteger. |
-| Pessoa 3 | Gerente de Configuração | Documentação de itens de configuração, ADRs, adaptações, auditoria e implementação da JFloat. |
-| Pessoa 4 | Relator | Relatórios de status, release notes, CHANGELOG e métodos simples da JInteger. |
-| Pessoa 5 | Desenvolvedor de apoio | Documentação de uso de IA, testes simples e métodos simples de JString e JFloat. |
+| Pedro Henrique Mendes | Engenheiro de Qualidade | Configuração da CI, testes, cobertura e implementação de métodos da JInteger. |
+| Thiago Nogueira | Gerente de Configuração | Documentação de itens de configuração, ADRs, adaptações, auditoria e implementação da JFloat. |
+| Rudimar Neves| Relator | Relatórios de status, release notes, CHANGELOG e métodos simples da JInteger. |
+| Arthur Yano | Desenvolvedor de apoio | Documentação de uso de IA, testes simples e métodos simples de JString e JFloat. |
 
 ## Como executar os testes
 
@@ -27,6 +27,8 @@ O objetivo é implementar, em Python 3.10+, classes inspiradas nas classes `Stri
 pytest
 
 ```
+## Documentação e Decisões Técnicas
+Para entender as diferenças arquiteturais e os motivos pelos quais alguns métodos foram adaptados, consulte nossa [Documentação de Adaptações Java para Python](docs/adaptacoes.md).
 
 ## Como executar o linter
 ```bash
