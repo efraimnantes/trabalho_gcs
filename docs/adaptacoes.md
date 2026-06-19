@@ -23,3 +23,6 @@ Enquanto o Java diferencia tipos primitivos (`int`, `float`) de classes *wrapper
 | :--- | :--- | :--- | :--- |
 | `JString` | `intern()` | A definir | Dificuldade em replicar a String Pool da JVM exatamente. Avaliando `sys.intern()`. |
 | `JInteger` | `parseInt(String s)` | Adaptado | Lida com exceções `ValueError` do Python para emular `NumberFormatException`. |
+
+## Conversões Numéricas (byte e short)
+Como o Python possui precisão arbitrária para inteiros, a simulação do comportamento de *overflow* dos tipos primitivos `byte` (8 bits) e `short` (16 bits) do Java foi implementada na classe `JInteger` utilizando operações bit a bit (máscaras `0xFF` e `0xFFFF`).
