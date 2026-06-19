@@ -34,3 +34,7 @@ class JFloat:
             return cls(parsed_value)
         else:
             raise TypeError("Value must be a float, int or a string")
+    def intValue(self) -> int:
+        """Equivalente ao Float.intValue() do Java.
+        Retorna o valor interno convertido para int primitivo (truncado)."""
+        return int(self.value)        

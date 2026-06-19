@@ -23,3 +23,6 @@ Enquanto o Java diferencia tipos primitivos (`int`, `float`) de classes *wrapper
 | :--- | :--- | :--- | :--- |
 | `JString` | `intern()` | A definir | Dificuldade em replicar a String Pool da JVM exatamente. Avaliando `sys.intern()`. |
 | `JInteger` | `parseInt(String s)` | Adaptado | Lida com exceções `ValueError` do Python para emular `NumberFormatException`. |
+
+## 6. Interoperabilidade entre Wrappers (JInteger e JFloat)
+- **Auto-Unboxing e Operações Mistas**: No Java, o compilador realiza o *unboxing* automático de objetos wrappers em expressões aritméticas (ex: `jint + jfloat`). Como o Python não possui esse comportamento para classes customizadas de forma nativa, a interoperabilidade foi resolvida expondo explicitamente os métodos `floatValue()` em `JInteger` e `intValue()` em `JFloat`, além de orientar o uso do atributo `.value` para a execução de operações matemáticas diretas entre as instâncias.
