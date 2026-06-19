@@ -86,3 +86,10 @@ Para entender as diferenças arquiteturais e os motivos pelos quais alguns méto
 ```bash
 ruff check .
 ```
+## Baselines do Projeto
+
+O projeto é dividido em entregas organizadas (Baselines). Atualmente estamos na primeira fase[cite: 1]:
+
+* **v0.1-functional:** Estrutura inicial do repositório, validação do CI (Ruff, Pytest, Coverage) e formalização do fluxo de trabalho[cite: 1].
+
+Para entender como contribuir, criar branches e enviar seu código, leia obrigatoriamente o nosso [Guia de Contribuição](CONTRIBUTING.md) e o [ADR 0002 de Ramificação](docs/adr/0002-modelo-ramificacao.md)[cite: 1].
