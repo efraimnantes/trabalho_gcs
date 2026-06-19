@@ -1,17 +1,19 @@
-# --- Novos testes para Formatação em Bases (Binary, Octal, Hex) ---
+# --- Novos testes para Comparação Estática e Unsigned ---
 
-def test_to_binary_string():
-    assert JInteger.toBinaryString(5) == "101"
-    assert JInteger.toBinaryString(0) == "0"
-    # Testa o comportamento do complemento de dois (32-bit) para negativos
-    assert JInteger.toBinaryString(-1) == "11111111111111111111111111111111"
+def test_compare():
+    assert JInteger.compare(10, 20) == -1
+    assert JInteger.compare(20, 20) == 0
+    assert JInteger.compare(30, 20) == 1
 
-def test_to_octal_string():
-    assert JInteger.toOctalString(8) == "10"
-    assert JInteger.toOctalString(0) == "0"
-    assert JInteger.toOctalString(-1) == "37777777777"
+def test_compare_unsigned():
+    # Em signed: -1 < 1
+    # Em unsigned: -1 vira 4294967295, logo -1 > 1
+    assert JInteger.compareUnsigned(-1, 1) == 1
+    assert JInteger.compareUnsigned(1, -1) == -1
+    assert JInteger.compareUnsigned(-1, -1) == 0
+    assert JInteger.compareUnsigned(10, 20) == -1
 
-def test_to_hex_string():
-    assert JInteger.toHexString(255) == "ff"
-    assert JInteger.toHexString(0) == "0"
-    assert JInteger.toHexString(-1) == "ffffffff"
+def test_to_unsigned_string():
+    assert JInteger.toUnsignedString(0) == "0"
+    assert JInteger.toUnsignedString(123) == "123"
+    assert JInteger.toUnsignedString(-1) == "4294967295"
