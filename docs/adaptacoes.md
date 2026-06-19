@@ -23,3 +23,9 @@ Enquanto o Java diferencia tipos primitivos (`int`, `float`) de classes *wrapper
 | :--- | :--- | :--- | :--- |
 | `JString` | `intern()` | A definir | Dificuldade em replicar a String Pool da JVM exatamente. Avaliando `sys.intern()`. |
 | `JInteger` | `parseInt(String s)` | Adaptado | Lida com exceções `ValueError` do Python para emular `NumberFormatException`. |
+
+## 6. JFloat (v0.3-jfloat)
+- Implementada usando `float` nativo do Python.
+- Constantes IEEE 754 (MAX_VALUE, MIN_VALUE, NaN, etc.) mapeadas usando a biblioteca `math`.
+- Conversões numéricas (`intValue`, `longValue`, `byteValue`) ajustadas para simular os limites do Java (ex: estouro de limite no byte).
+- Validações `isNaN()`, `isInfinite()` e `isFinite()` funcionais.
