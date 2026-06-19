@@ -23,3 +23,12 @@ Enquanto o Java diferencia tipos primitivos (`int`, `float`) de classes *wrapper
 | :--- | :--- | :--- | :--- |
 | `JString` | `intern()` | A definir | Dificuldade em replicar a String Pool da JVM exatamente. Avaliando `sys.intern()`. |
 | `JInteger` | `parseInt(String s)` | Adaptado | Lida com exceções `ValueError` do Python para emular `NumberFormatException`. |
+
+## JInteger - Baseline v0.2
+
+### Métodos Implementados
+- `parseInt(String s)`: Implementado utilizando conversão nativa do Python.
+- `valueOf(String s)`: Implementado encapsulando o tipo nativo.
+
+### Métodos Não Implementados ou Parcialmente Adaptados
+- Métodos que dependem de manipulação estrita de bits (ex: `highestOneBit`) foram adaptados para as funções nativas matemáticas do Python ou deixados para implementações futuras, devido às diferenças no tratamento de números inteiros na memória entre Java e Python.
