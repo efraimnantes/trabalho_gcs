@@ -1,4 +1,3 @@
-```python
 from javalang.jinteger import JInteger
 
 
@@ -54,4 +53,3 @@ def test_jinteger_short_value():
     assert JInteger(42).shortValue() == 42
     assert JInteger(32769).shortValue() == -32767
     assert JInteger(-1).shortValue() == -1
-```
