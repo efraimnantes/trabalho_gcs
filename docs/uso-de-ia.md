@@ -1,21 +1,40 @@
 # Uso de IA Generativa
 
-Este documento registra o uso de IA generativa como apoio ao projeto.
+## Ferramenta Utilizada
 
-## Ferramenta utilizada
+Foi utilizada a ferramenta ChatGPT da OpenAI como apoio ao desenvolvimento do projeto.
 
-- ChatGPT
+## Finalidade do Uso
 
-## Finalidade do uso
+A IA foi utilizada para auxiliar em:
 
-A IA foi utilizada como apoio para:
+- Planejamento das atividades;
+- Revisão de documentação;
+- Sugestões de organização do projeto;
+- Apoio na escrita de textos técnicos.
 
-- interpretação do enunciado do trabalho;
-- organização inicial do repositório;
-- sugestão de divisão de tarefas;
-- apoio na escrita de documentação;
-- apoio na criação de exemplos de testes e implementação.
+## Processo de Revisão
 
-## Observação
+Todo conteúdo gerado por IA é revisado pelos integrantes da equipe antes de ser incorporado ao projeto.
 
-Todo código e documentação adicionados ao repositório foram revisados pelos integrantes responsáveis antes do merge.
+A responsabilidade final pelo conteúdo permanece com a equipe.
+
+## Prompts Utilizados
+
+Exemplos:
+
+- "Explique as diferenças entre Java e Python."
+- "Sugira uma estrutura para documentação de projeto."
+- "Como documentar um ADR?"
+
+## Métodos ou Artefatos com Apoio de IA
+
+| Item | Tipo de apoio |
+|--------|-------------|
+| README | Revisão textual |
+| ADRs | Sugestões de documentação |
+| Planejamento | Organização das tarefas |
+
+## Observações
+
+A IA foi utilizada apenas como ferramenta de apoio e não substitui o trabalho dos integrantes da equipe.

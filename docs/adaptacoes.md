@@ -19,10 +19,50 @@ Enquanto o Java diferencia tipos primitivos (`int`, `float`) de classes *wrapper
 
 ## 5. Tabela de Métodos Adaptados ou Não Implementados
 
-| Classe | Método Original | Status | Motivo / Alternativa em Python |
-| :--- | :--- | :--- | :--- |
-| `JString` | `intern()` | A definir | Dificuldade em replicar a String Pool da JVM exatamente. Avaliando `sys.intern()`. |
-| `JInteger` | `parseInt(String s)` | Adaptado | Lida com exceções `ValueError` do Python para emular `NumberFormatException`. |
+| Classe     | Método Original            | Status               | Motivo / Alternativa em Python                                                                                                                       |
+| :--------- | :------------------------- | :------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `JString`  | `String(StringBuilder)`    | Não implementado     | Python não possui `StringBuilder` nativo equivalente. Usar `str()` quando necessário.                                                                |
+| `JString`  | `intern()`                 | Adaptado/documentado | O pool de strings da JVM não se aplica diretamente ao runtime Python. Pode-se usar a string normalmente; `sys.intern()` será avaliado se necessário. |
+| `JString`  | `getBytes(String charset)` | Adaptado             | Python utiliza encoding por string, como UTF-8. Alternativa: `encode(encoding)`.                                                                     |
+| `JInteger` | `TYPE`                     | Adaptado             | No Java, `Integer.TYPE` retorna a classe que representa o tipo primitivo `int`; em Python foi adaptado para retornar o tipo embutido `int`.          |
+| `JInteger` | `parseInt(String s)`       | Adaptado             | Usa conversão com `int()` e exceções `ValueError` para simular comportamento de entrada inválida.                                                    |
+| `JInteger` | `valueOf(String s)`        | Adaptado             | Retorna uma instância de `JInteger` a partir da conversão nativa com `int()`.                                                                         |
+| `JInteger` | `toBinaryString(int i)`    | Adaptado             | Usa máscara de 32 bits (`i & 0xFFFFFFFF`) para simular a representação unsigned do Java em valores negativos.                                        |
+| `JInteger` | `toOctalString(int i)`     | Adaptado             | Usa máscara de 32 bits e remove o prefixo `0o` gerado pelo Python.                                                                                   |
+| `JInteger` | `toHexString(int i)`       | Adaptado             | Usa máscara de 32 bits e remove o prefixo `0x` gerado pelo Python.                                                                                   |
+| `JInteger` | `floatValue()`             | Adaptado             | Retorna o valor interno convertido para `float`, permitindo interoperabilidade com `JFloat`.                                                         |
+| `JFloat`   | `intValue()`               | Adaptado             | Retorna o valor interno convertido para `int`, permitindo interoperabilidade com `JInteger`.                                                         |
 
-## 6. Interoperabilidade entre Wrappers (JInteger e JFloat)
-- **Auto-Unboxing e Operações Mistas**: No Java, o compilador realiza o *unboxing* automático de objetos wrappers em expressões aritméticas (ex: `jint + jfloat`). Como o Python não possui esse comportamento para classes customizadas de forma nativa, a interoperabilidade foi resolvida expondo explicitamente os métodos `floatValue()` em `JInteger` e `intValue()` em `JFloat`, além de orientar o uso do atributo `.value` para a execução de operações matemáticas diretas entre as instâncias.
+## JInteger - Baseline v0.2
+
+### Métodos Implementados
+
+- `parseInt(String s)`: implementado utilizando conversão nativa do Python com `int()`.
+- `valueOf(String s)`: implementado encapsulando o valor convertido em uma instância de `JInteger`.
+- `toBinaryString(int i)`: implementado com máscara de 32 bits para representar negativos como no Java.
+- `toOctalString(int i)`: implementado com máscara de 32 bits e formatação octal.
+- `toHexString(int i)`: implementado com máscara de 32 bits e formatação hexadecimal.
+- `compare(int x, int y)`: implementado comparando dois inteiros e retornando negativo, zero ou positivo.
+- `compareUnsigned(int x, int y)`: implementado usando máscara de 32 bits para simular comparação unsigned.
+- `toUnsignedString(int i)`: implementado usando máscara de 32 bits para representar inteiros negativos como unsigned.
+- `floatValue()`: implementado para converter o valor de `JInteger` para `float`.
+
+### Métodos Não Implementados ou Parcialmente Adaptados
+
+- Métodos que dependem de manipulação estrita de bits, como `highestOneBit`, poderão ser adaptados para funções nativas do Python ou deixados para implementações futuras, devido às diferenças no tratamento de números inteiros entre Java e Python.
+
+### Formatação de Bases
+
+Em Java, métodos como `toBinaryString`, `toOctalString` e `toHexString` retornam a representação unsigned de 32 bits para valores negativos. Como o Python utiliza inteiros de precisão arbitrária, foi aplicada a máscara `i & 0xFFFFFFFF` para simular o comportamento de inteiros de 32 bits do Java.
+
+### Comparação e Operações Unsigned
+
+Como o Python possui inteiros de precisão arbitrária e não possui tipo `unsigned int` de 32 bits como o Java, os métodos `compareUnsigned` e `toUnsignedString` foram adaptados usando a máscara `i & 0xFFFFFFFF`.
+
+Essa máscara permite interpretar valores negativos no formato de complemento de dois de 32 bits. Por exemplo, `-1` passa a ser tratado como `4294967295`, simulando o comportamento de `Integer` no Java SE 8.
+
+## Interoperabilidade entre Wrappers
+
+No Java, o compilador realiza o auto-unboxing de objetos wrappers em expressões aritméticas. Como o Python não possui esse comportamento automaticamente para classes customizadas, a interoperabilidade entre `JInteger` e `JFloat` foi adaptada por meio de métodos explícitos de conversão, como `floatValue()` em `JInteger` e `intValue()` em `JFloat`.
+
+Também é possível usar o atributo interno `.value` quando for necessário realizar operações matemáticas diretamente entre instâncias.
