@@ -17,8 +17,22 @@ class JInteger:
             raise TypeError("Value must be an int or a numeric string")
 
     def floatValue(self) -> float:
-        """Equivalente ao Integer.floatValue() do Java."""
         return float(self.value)
+
+    def doubleValue(self) -> float:
+        return float(self.value)
+
+    def byteValue(self) -> int:
+        value = self.value & 0xFF
+        if value < 128:
+            return value
+        return value - 256
+
+    def shortValue(self) -> int:
+        value = self.value & 0xFFFF
+        if value < 32768:
+            return value
+        return value - 65536
 
     @staticmethod
     def compare(x: int, y: int) -> int:

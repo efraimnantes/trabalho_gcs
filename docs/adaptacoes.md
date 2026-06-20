@@ -31,38 +31,16 @@ Enquanto o Java diferencia tipos primitivos (`int`, `float`) de classes *wrapper
 | `JInteger` | `toOctalString(int i)`     | Adaptado             | Usa máscara de 32 bits e remove o prefixo `0o` gerado pelo Python.                                                                                   |
 | `JInteger` | `toHexString(int i)`       | Adaptado             | Usa máscara de 32 bits e remove o prefixo `0x` gerado pelo Python.                                                                                   |
 | `JInteger` | `floatValue()`             | Adaptado             | Retorna o valor interno convertido para `float`, permitindo interoperabilidade com `JFloat`.                                                         |
+| `JInteger` | `doubleValue()`            | Adaptado             | Retorna o valor interno convertido para `float`, pois Python não diferencia `float` e `double` como Java.                                            |
+| `JInteger` | `byteValue()`              | Adaptado             | Usa máscara de 8 bits (`0xFF`) para simular o comportamento de conversão para `byte` do Java.                                                        |
+| `JInteger` | `shortValue()`             | Adaptado             | Usa máscara de 16 bits (`0xFFFF`) para simular o comportamento de conversão para `short` do Java.                                                    |
 | `JFloat`   | `intValue()`               | Adaptado             | Retorna o valor interno convertido para `int`, permitindo interoperabilidade com `JInteger`.                                                         |
 
-## JInteger - Baseline v0.2
+## Conversões Numéricas Complementares
 
-### Métodos Implementados
+Como o Python possui precisão arbitrária para inteiros, a simulação do comportamento de overflow dos tipos primitivos `byte` e `short` do Java foi adaptada por meio de operações bit a bit.
 
-- `parseInt(String s)`: implementado utilizando conversão nativa do Python com `int()`.
-- `valueOf(String s)`: implementado encapsulando o valor convertido em uma instância de `JInteger`.
-- `toBinaryString(int i)`: implementado com máscara de 32 bits para representar negativos como no Java.
-- `toOctalString(int i)`: implementado com máscara de 32 bits e formatação octal.
-- `toHexString(int i)`: implementado com máscara de 32 bits e formatação hexadecimal.
-- `compare(int x, int y)`: implementado comparando dois inteiros e retornando negativo, zero ou positivo.
-- `compareUnsigned(int x, int y)`: implementado usando máscara de 32 bits para simular comparação unsigned.
-- `toUnsignedString(int i)`: implementado usando máscara de 32 bits para representar inteiros negativos como unsigned.
-- `floatValue()`: implementado para converter o valor de `JInteger` para `float`.
+Para `byteValue()`, é usada a máscara `0xFF`, simulando um inteiro de 8 bits.  
+Para `shortValue()`, é usada a máscara `0xFFFF`, simulando um inteiro de 16 bits.
 
-### Métodos Não Implementados ou Parcialmente Adaptados
-
-- Métodos que dependem de manipulação estrita de bits, como `highestOneBit`, poderão ser adaptados para funções nativas do Python ou deixados para implementações futuras, devido às diferenças no tratamento de números inteiros entre Java e Python.
-
-### Formatação de Bases
-
-Em Java, métodos como `toBinaryString`, `toOctalString` e `toHexString` retornam a representação unsigned de 32 bits para valores negativos. Como o Python utiliza inteiros de precisão arbitrária, foi aplicada a máscara `i & 0xFFFFFFFF` para simular o comportamento de inteiros de 32 bits do Java.
-
-### Comparação e Operações Unsigned
-
-Como o Python possui inteiros de precisão arbitrária e não possui tipo `unsigned int` de 32 bits como o Java, os métodos `compareUnsigned` e `toUnsignedString` foram adaptados usando a máscara `i & 0xFFFFFFFF`.
-
-Essa máscara permite interpretar valores negativos no formato de complemento de dois de 32 bits. Por exemplo, `-1` passa a ser tratado como `4294967295`, simulando o comportamento de `Integer` no Java SE 8.
-
-## Interoperabilidade entre Wrappers
-
-No Java, o compilador realiza o auto-unboxing de objetos wrappers em expressões aritméticas. Como o Python não possui esse comportamento automaticamente para classes customizadas, a interoperabilidade entre `JInteger` e `JFloat` foi adaptada por meio de métodos explícitos de conversão, como `floatValue()` em `JInteger` e `intValue()` em `JFloat`.
-
-Também é possível usar o atributo interno `.value` quando for necessário realizar operações matemáticas diretamente entre instâncias.
+Essa adaptação permite representar valores fora do intervalo padrão de `byte` e `short` de forma semelhante ao comportamento do Java.
