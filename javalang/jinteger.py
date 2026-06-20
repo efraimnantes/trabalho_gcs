@@ -1,4 +1,3 @@
-
 class JInteger:
     MAX_VALUE: int = 2147483647
     MIN_VALUE: int = -2147483648
@@ -16,6 +15,10 @@ class JInteger:
             self.value = value
         else:
             raise TypeError("Value must be an int or a numeric string")
+
+    def floatValue(self) -> float:
+        """Equivalente ao Integer.floatValue() do Java."""
+        return float(self.value)
 
     @staticmethod
     def compare(x: int, y: int) -> int:

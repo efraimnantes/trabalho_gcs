@@ -30,6 +30,8 @@ Enquanto o Java diferencia tipos primitivos (`int`, `float`) de classes *wrapper
 | `JInteger` | `toBinaryString(int i)`    | Adaptado             | Usa máscara de 32 bits (`i & 0xFFFFFFFF`) para simular a representação unsigned do Java em valores negativos.                                        |
 | `JInteger` | `toOctalString(int i)`     | Adaptado             | Usa máscara de 32 bits e remove o prefixo `0o` gerado pelo Python.                                                                                   |
 | `JInteger` | `toHexString(int i)`       | Adaptado             | Usa máscara de 32 bits e remove o prefixo `0x` gerado pelo Python.                                                                                   |
+| `JInteger` | `floatValue()`             | Adaptado             | Retorna o valor interno convertido para `float`, permitindo interoperabilidade com `JFloat`.                                                         |
+| `JFloat`   | `intValue()`               | Adaptado             | Retorna o valor interno convertido para `int`, permitindo interoperabilidade com `JInteger`.                                                         |
 
 ## JInteger - Baseline v0.2
 
@@ -43,6 +45,7 @@ Enquanto o Java diferencia tipos primitivos (`int`, `float`) de classes *wrapper
 - `compare(int x, int y)`: implementado comparando dois inteiros e retornando negativo, zero ou positivo.
 - `compareUnsigned(int x, int y)`: implementado usando máscara de 32 bits para simular comparação unsigned.
 - `toUnsignedString(int i)`: implementado usando máscara de 32 bits para representar inteiros negativos como unsigned.
+- `floatValue()`: implementado para converter o valor de `JInteger` para `float`.
 
 ### Métodos Não Implementados ou Parcialmente Adaptados
 
@@ -57,3 +60,9 @@ Em Java, métodos como `toBinaryString`, `toOctalString` e `toHexString` retorna
 Como o Python possui inteiros de precisão arbitrária e não possui tipo `unsigned int` de 32 bits como o Java, os métodos `compareUnsigned` e `toUnsignedString` foram adaptados usando a máscara `i & 0xFFFFFFFF`.
 
 Essa máscara permite interpretar valores negativos no formato de complemento de dois de 32 bits. Por exemplo, `-1` passa a ser tratado como `4294967295`, simulando o comportamento de `Integer` no Java SE 8.
+
+## Interoperabilidade entre Wrappers
+
+No Java, o compilador realiza o auto-unboxing de objetos wrappers em expressões aritméticas. Como o Python não possui esse comportamento automaticamente para classes customizadas, a interoperabilidade entre `JInteger` e `JFloat` foi adaptada por meio de métodos explícitos de conversão, como `floatValue()` em `JInteger` e `intValue()` em `JFloat`.
+
+Também é possível usar o atributo interno `.value` quando for necessário realizar operações matemáticas diretamente entre instâncias.
