@@ -28,9 +28,9 @@ def test_parse_float_valid():
 
 def test_parse_float_invalid():
   with pytest.raises(ValueError):
-  JFloat.parseFloat("abc")
+   JFloat.parseFloat("abc")
   with pytest.raises(ValueError):
-  JFloat.parseFloat("")
+   JFloat.parseFloat("")
 
 def test_value_of_with_float():
   obj = JFloat.valueOf(5.5)
@@ -44,4 +44,4 @@ def test_value_of_with_string():
 
 def test_value_of_invalid_string():
   with pytest.raises(ValueError):
-  JFloat.valueOf("invalid_float")
+   JFloat.valueOf("invalid_float")
