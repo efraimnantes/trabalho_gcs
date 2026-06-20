@@ -71,3 +71,19 @@ class JInteger:
             raise TypeError("Argument must be an integer")
 
         return str(i & 0xFFFFFFFF)
+
+    @staticmethod
+    def sum(a: int, b: int) -> int:
+        return a + b
+
+    @staticmethod
+    def max(a: int, b: int) -> int:
+        if a >= b:
+            return a
+        return b
+
+    @staticmethod
+    def min(a: int, b: int) -> int:
+        if a <= b:
+            return a
+        return b

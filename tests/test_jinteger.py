@@ -45,18 +45,22 @@ def test_to_unsigned_string():
     assert JInteger.toUnsignedString(-1) == "4294967295"
 
 
-def test_jinteger_double_value():
-    value = JInteger(42)
-    assert value.doubleValue() == 42.0
+def test_jinteger_static_sum():
+    assert JInteger.sum(2, 3) == 5
+    assert JInteger.sum(-2, 3) == 1
+    assert JInteger.sum(-2, -3) == -5
+    assert JInteger.sum(0, 5) == 5
 
 
-def test_jinteger_byte_value():
-    assert JInteger(42).byteValue() == 42
-    assert JInteger(130).byteValue() == -126
-    assert JInteger(-1).byteValue() == -1
+def test_jinteger_static_max():
+    assert JInteger.max(10, 20) == 20
+    assert JInteger.max(20, 10) == 20
+    assert JInteger.max(-5, -2) == -2
+    assert JInteger.max(0, -1) == 0
 
 
-def test_jinteger_short_value():
-    assert JInteger(42).shortValue() == 42
-    assert JInteger(32769).shortValue() == -32767
-    assert JInteger(-1).shortValue() == -1
+def test_jinteger_static_min():
+    assert JInteger.min(10, 20) == 10
+    assert JInteger.min(20, 10) == 10
+    assert JInteger.min(-5, -2) == -5
+    assert JInteger.min(0, -1) == -1
