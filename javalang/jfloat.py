@@ -1,3 +1,4 @@
+import math
 from typing import Union
 
 class JFloat:
@@ -56,3 +57,13 @@ class JFloat:
     def byteValue(self) -> int:
         """Equivalente ao Float.byteValue() do Java, simulando overflow de byte."""
         return (int(self.value) + 128) % 256 - 128
+
+    def isNaN(self) -> bool:
+        return math.isnan(self.value)
+
+    def isInfinite(self) -> bool:
+        return math.isinf(self.value)
+
+    @staticmethod
+    def isFinite(f) -> bool:
+        return math.isfinite(float(f))
