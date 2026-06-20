@@ -1,5 +1,3 @@
-import pytest
-
 from javalang.jinteger import JInteger
 
 def test_compare():
