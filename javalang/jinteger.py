@@ -1,13 +1,105 @@
+```python
 class JInteger:
-    def __init__(self, value: int):
-        self.value = value
-    def doubleValue(self):
+    MAX_VALUE: int = 2147483647
+    MIN_VALUE: int = -2147483648
+    SIZE: int = 32
+    BYTES: int = 4
+    TYPE = int
+
+    def __init__(self, value: int | str):
+        if isinstance(value, str):
+            try:
+                self.value = int(value)
+            except ValueError:
+                raise ValueError(f"For input string: '{value}'")
+        elif isinstance(value, int):
+            self.value = value
+        else:
+            raise TypeError("Value must be an int or a numeric string")
+
+    def floatValue(self) -> float:
+        """Equivalente ao Integer.floatValue() do Java."""
         return float(self.value)
 
-    def byteValue(self):
-        val = self.value & 0xFF
-        return val if val < 128 else val - 256
+    def doubleValue(self) -> float:
+        """Equivalente ao Integer.doubleValue() do Java."""
+        return float(self.value)
 
-    def shortValue(self):
-        val = self.value & 0xFFFF
-        return val if val < 32768 else val - 65536
+    def byteValue(self) -> int:
+        """Equivalente ao Integer.byteValue() do Java."""
+        value = self.value & 0xFF
+        if value < 128:
+            return value
+        return value - 256
+
+    def shortValue(self) -> int:
+        """Equivalente ao Integer.shortValue() do Java."""
+        value = self.value & 0xFFFF
+        if value < 32768:
+            return value
+        return value - 65536
+
+    @staticmethod
+    def compare(x: int, y: int) -> int:
+        if not isinstance(x, int) or not isinstance(y, int):
+            raise TypeError("Arguments must be integers")
+
+        if x < y:
+            return -1
+        if x > y:
+            return 1
+        return 0
+
+    @staticmethod
+    def compareUnsigned(x: int, y: int) -> int:
+        if not isinstance(x, int) or not isinstance(y, int):
+            raise TypeError("Arguments must be integers")
+
+        ux = x & 0xFFFFFFFF
+        uy = y & 0xFFFFFFFF
+
+        if ux < uy:
+            return -1
+        if ux > uy:
+            return 1
+        return 0
+
+    @staticmethod
+    def toUnsignedString(i: int) -> str:
+        if not isinstance(i, int):
+            raise TypeError("Argument must be an integer")
+
+        return str(i & 0xFFFFFFFF)
+```
+
+
+        if ux < uy:
+            return -1
+        if ux > uy:
+            return 1
+        return 0
+
+    @staticmethod
+    def toUnsignedString(i: int) -> str:
+        if not isinstance(i, int):
+            raise TypeError("Argument must be an integer")
+
+        return str(i & 0xFFFFFFFF)
+          def doubleValue(self) -> float:
+        """Equivalente ao Integer.doubleValue() do Java."""
+        return float(self.value)
+
+    def byteValue(self) -> int:
+        """Equivalente ao Integer.byteValue() do Java."""
+        value = self.value & 0xFF
+        if value < 128:
+            return value
+        return value - 256
+
+    def shortValue(self) -> int:
+        """Equivalente ao Integer.shortValue() do Java."""
+        value = self.value & 0xFFFF
+        if value < 32768:
+            return value
+        return value - 65536
+ main
