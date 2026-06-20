@@ -21,9 +21,20 @@ Enquanto o Java diferencia tipos primitivos (`int`, `float`) de classes *wrapper
 
 | Classe     | Método Original            | Status               | Motivo / Alternativa em Python                                                                                                                       |
 | :--------- | :------------------------- | :------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `JString`  | `String(StringBuilder)`    | Não implementado     | Python não possui `StringBuilder` nativo equivalente. Usar `str()` quando necessário.                                                                |
-| `JString`  | `intern()`                 | Adaptado/documentado | O pool de strings da JVM não se aplica diretamente ao runtime Python. Pode-se usar a string normalmente; `sys.intern()` será avaliado se necessário. |
-| `JString`  | `getBytes(String charset)` | Adaptado             | Python utiliza encoding por string, como UTF-8. Alternativa: `encode(encoding)`.                                                                     |
-| `JInteger` | `TYPE`                     | Adaptado             | No Java, `Integer.TYPE` retorna a classe que representa o tipo primitivo `int`; em Python foi adaptado para retornar o tipo embutido `int`.          |
-| `JInteger` | `parseInt(String s)`       | Adaptado             | Usa conversão com `int()` e exceções `ValueError` para simular comportamento de entrada inválida.                                                    |
+| JString  | String(StringBuilder)    | Não implementado     | Python não possui StringBuilder nativo equivalente. Usar str() quando necessário.                                                                |
+| JString  | intern()                 | Adaptado/documentado | O pool de strings da JVM não se aplica diretamente ao runtime Python. Pode-se usar a string normalmente; sys.intern() será avaliado se necessário. |
+| JString  | getBytes(String charset) | Adaptado             | Python utiliza encoding por string, como UTF-8. Alternativa: encode(encoding).                                                                     |
+| JInteger | TYPE                     | Adaptado             | No Java, Integer.TYPE retorna a classe que representa o tipo primitivo int; em Python foi adaptado para retornar o tipo embutido int.          |
+| JInteger | parseInt(String s)       | Adaptado             | Usa conversão com int() e exceções ValueError para simular comportamento de entrada inválida.                                                    |
+| JInteger | valueOf(String s)        | Adaptado             | Retorna uma instância de JInteger a partir da conversão nativa com int().                                                                         |
 
+## JInteger - Baseline v0.2
+
+### Métodos Implementados
+
+- parseInt(String s): implementado utilizando conversão nativa do Python com int().
+- valueOf(String s): implementado encapsulando o valor convertido em uma instância de JInteger.
+
+### Métodos Não Implementados ou Parcialmente Adaptados
+
+- Métodos que dependem de manipulação estrita de bits, como highestOneBit, poderão ser adaptados para funções nativas do Python ou deixados para implementações futuras, devido às diferenças no tratamento de números inteiros entre Java e Python.

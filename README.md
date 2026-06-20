@@ -67,7 +67,8 @@ O projeto está organizado nas seguintes baselines:
 * `v1.0.0`: entrega final, auditorias, apresentação gravada e release final.
 
 As baselines devem ser acompanhadas por relatórios de status, issues resolvidas, Pull Requests mesclados, CI verde e tags/releases no GitHub.
-    
+
+- [Relatório de Status - v0.2 JInteger](docs/relatorios/status-v0.2.md)
 
 ## Organização da equipe
 
