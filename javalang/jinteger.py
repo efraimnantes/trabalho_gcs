@@ -1,4 +1,3 @@
-```python
 class JInteger:
     MAX_VALUE: int = 2147483647
     MIN_VALUE: int = -2147483648
@@ -18,22 +17,18 @@ class JInteger:
             raise TypeError("Value must be an int or a numeric string")
 
     def floatValue(self) -> float:
-        """Equivalente ao Integer.floatValue() do Java."""
         return float(self.value)
 
     def doubleValue(self) -> float:
-        """Equivalente ao Integer.doubleValue() do Java."""
         return float(self.value)
 
     def byteValue(self) -> int:
-        """Equivalente ao Integer.byteValue() do Java."""
         value = self.value & 0xFF
         if value < 128:
             return value
         return value - 256
 
     def shortValue(self) -> int:
-        """Equivalente ao Integer.shortValue() do Java."""
         value = self.value & 0xFFFF
         if value < 32768:
             return value
@@ -70,36 +65,3 @@ class JInteger:
             raise TypeError("Argument must be an integer")
 
         return str(i & 0xFFFFFFFF)
-```
-
-
-        if ux < uy:
-            return -1
-        if ux > uy:
-            return 1
-        return 0
-
-    @staticmethod
-    def toUnsignedString(i: int) -> str:
-        if not isinstance(i, int):
-            raise TypeError("Argument must be an integer")
-
-        return str(i & 0xFFFFFFFF)
-          def doubleValue(self) -> float:
-        """Equivalente ao Integer.doubleValue() do Java."""
-        return float(self.value)
-
-    def byteValue(self) -> int:
-        """Equivalente ao Integer.byteValue() do Java."""
-        value = self.value & 0xFF
-        if value < 128:
-            return value
-        return value - 256
-
-    def shortValue(self) -> int:
-        """Equivalente ao Integer.shortValue() do Java."""
-        value = self.value & 0xFFFF
-        if value < 32768:
-            return value
-        return value - 65536
- main
