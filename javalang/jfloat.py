@@ -69,3 +69,27 @@ class JFloat:
     def toString(self) -> str:
         """Equivalente ao Float.toString() do Java como método de instância."""
         return str(self.value)
+    
+
+    @staticmethod
+    def compare(x: float, y: float) -> int:
+        """Equivalente ao Float.compare(float f1, float f2) do Java."""
+        x = float(x)
+        y = float(y)
+
+        if x < y:
+            return -1
+        if x > y:
+            return 1
+        return 0
+
+    @staticmethod
+    def max(x: float, y: float) -> float:
+        """Equivalente ao Float.max(float a, float b) do Java."""
+        return max(float(x), float(y))
+
+    @staticmethod
+    def min(x: float, y: float) -> float:
+        """Equivalente ao Float.min(float a, float b) do Java."""
+        return min(float(x), float(y))
+   
