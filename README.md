@@ -23,11 +23,17 @@ Principais diretórios e arquivos:
 Essa organização separa código, testes, documentação e automação, facilitando a rastreabilidade entre issues, commits, Pull Requests e baselines.
 
 
-## Classes do projeto
+## Convenções de Nomenclatura
 
-- `JString`
-- `JInteger`
-- `JFloat`
+O projeto utiliza as classes:
+
+- JString
+- JInteger
+- JFloat
+
+O prefixo "J" foi adotado para evitar conflitos com tipos nativos do Python.
+
+Os métodos seguem o padrão camelCase para manter compatibilidade conceitual com a API Java.
 
 ## Processo de GCS
 
