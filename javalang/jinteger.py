@@ -1,5 +1,3 @@
-from typing import Union
-
 
 class JInteger:
     MAX_VALUE: int = 2147483647
