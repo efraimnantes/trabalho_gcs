@@ -56,3 +56,46 @@ def test_value_of_with_valid_string():
 def test_value_of_with_invalid_string():
     with pytest.raises(ValueError):
         JInteger.valueOf("xyz")
+
+
+def test_parse_int_with_radix():
+    assert JInteger.parseInt("1010", 2) == 10
+    assert JInteger.parseInt("12", 8) == 10
+    assert JInteger.parseInt("10", 10) == 10
+    assert JInteger.parseInt("A", 16) == 10
+    assert JInteger.parseInt("-FF", 16) == -255
+
+
+def test_parse_int_invalid_radix():
+    with pytest.raises(ValueError):
+        JInteger.parseInt("10", 1)
+
+    with pytest.raises(ValueError):
+        JInteger.parseInt("10", 37)
+
+
+def test_value_of_with_radix():
+    obj = JInteger.valueOf("1010", 2)
+    assert isinstance(obj, JInteger)
+    assert obj.value == 10
+
+
+def test_decode_valid_prefixes():
+    assert JInteger.decode("0x10").value == 16
+    assert JInteger.decode("-0X10").value == -16
+    assert JInteger.decode("#10").value == 16
+    assert JInteger.decode("010").value == 8
+    assert JInteger.decode("-010").value == -8
+    assert JInteger.decode("10").value == 10
+    assert JInteger.decode("+10").value == 10
+
+
+def test_decode_invalid_strings():
+    with pytest.raises(ValueError):
+        JInteger.decode("")
+
+    with pytest.raises(ValueError):
+        JInteger.decode("-")
+
+    with pytest.raises(ValueError):
+        JInteger.decode("0xG")
