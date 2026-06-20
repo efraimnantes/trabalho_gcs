@@ -73,6 +73,10 @@ As baselines devem ser acompanhadas por relatórios de status, issues resolvidas
 | Rudimar Neves| Relator | Relatórios de status, release notes, CHANGELOG e métodos simples da JInteger. |
 | Arthur Yano | Desenvolvedor de apoio | Documentação de uso de IA, testes simples e métodos simples de JString e JFloat. |
 
+## Regras de Revisão de Código
+* Todos os integrantes da equipe participam ativamente das revisões de Pull Requests (PRs).
+* É estritamente proibido que um integrante aprove o seu próprio Pull Request.
+
 ## Como executar os testes
 
 ```bash
