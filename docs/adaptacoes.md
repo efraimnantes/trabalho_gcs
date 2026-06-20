@@ -40,6 +40,9 @@ Enquanto o Java diferencia tipos primitivos (`int`, `float`) de classes *wrapper
 - `toBinaryString(int i)`: implementado com máscara de 32 bits para representar negativos como no Java.
 - `toOctalString(int i)`: implementado com máscara de 32 bits e formatação octal.
 - `toHexString(int i)`: implementado com máscara de 32 bits e formatação hexadecimal.
+- `compare(int x, int y)`: implementado comparando dois inteiros e retornando negativo, zero ou positivo.
+- `compareUnsigned(int x, int y)`: implementado usando máscara de 32 bits para simular comparação unsigned.
+- `toUnsignedString(int i)`: implementado usando máscara de 32 bits para representar inteiros negativos como unsigned.
 
 ### Métodos Não Implementados ou Parcialmente Adaptados
 
@@ -48,3 +51,9 @@ Enquanto o Java diferencia tipos primitivos (`int`, `float`) de classes *wrapper
 ### Formatação de Bases
 
 Em Java, métodos como `toBinaryString`, `toOctalString` e `toHexString` retornam a representação unsigned de 32 bits para valores negativos. Como o Python utiliza inteiros de precisão arbitrária, foi aplicada a máscara `i & 0xFFFFFFFF` para simular o comportamento de inteiros de 32 bits do Java.
+
+### Comparação e Operações Unsigned
+
+Como o Python possui inteiros de precisão arbitrária e não possui tipo `unsigned int` de 32 bits como o Java, os métodos `compareUnsigned` e `toUnsignedString` foram adaptados usando a máscara `i & 0xFFFFFFFF`.
+
+Essa máscara permite interpretar valores negativos no formato de complemento de dois de 32 bits. Por exemplo, `-1` passa a ser tratado como `4294967295`, simulando o comportamento de `Integer` no Java SE 8.
