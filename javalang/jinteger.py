@@ -1,4 +1,4 @@
-class JInteger:
+﻿class JInteger:
     MAX_VALUE: int = 2147483647
     MIN_VALUE: int = -2147483648
     SIZE: int = 32
@@ -15,6 +15,24 @@ class JInteger:
             self.value = value
         else:
             raise TypeError("Value must be an int or a numeric string")
+
+    def toString(self) -> str:
+        return str(self.value)
+
+    def equals(self, other) -> bool:
+        if isinstance(other, JInteger):
+            return self.value == other.value
+        return False
+
+    def compareTo(self, other) -> int:
+        if not isinstance(other, JInteger):
+            raise TypeError("Value must be a JInteger")
+
+        if self.value < other.value:
+            return -1
+        if self.value > other.value:
+            return 1
+        return 0
 
     def intValue(self) -> int:
         return self.value
@@ -85,5 +103,5 @@ class JInteger:
     @staticmethod
     def min(a: int, b: int) -> int:
         if a <= b:
-            return a
+            return a    
         return b
