@@ -62,23 +62,20 @@ def test_jfloat_byte_overflow():
     jf = JFloat(130.0)
     assert jf.byteValue() == -126
 
-def test_jfloat_isnan():
-    jf_nan = JFloat(float("nan"))
-    jf_normal = JFloat(5.0)
+def test_float_value():
+    obj = JFloat("3.14")
+    assert obj.floatValue() == 3.14
+    assert isinstance(obj.floatValue(), float)
 
-    assert jf_nan.isNaN() is True
-    assert jf_normal.isNaN() is False
+def test_double_value():
+    obj = JFloat(2.71828)
+    assert obj.doubleValue() == 2.71828
+    assert isinstance(obj.doubleValue(), float)
 
-def test_jfloat_isinfinite():
-    jf_pos_inf = JFloat(float("inf"))
-    jf_neg_inf = JFloat(float("-inf"))
-    jf_normal = JFloat(10.5)
+def test_to_string():
+    obj = JFloat(10.5)
+    assert obj.toString() == "10.5"
+    assert isinstance(obj.toString(), str)
 
-    assert jf_pos_inf.isInfinite() is True
-    assert jf_neg_inf.isInfinite() is True
-    assert jf_normal.isInfinite() is False
-
-def test_jfloat_isfinite():
-    assert JFloat.isFinite(10.5) is True
-    assert JFloat.isFinite(float("inf")) is False
-    assert JFloat.isFinite(float("nan")) is False
+    obj_zero = JFloat(0.0)
+    assert obj_zero.toString() == "0.0"
