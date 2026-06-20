@@ -23,11 +23,17 @@ Principais diretórios e arquivos:
 Essa organização separa código, testes, documentação e automação, facilitando a rastreabilidade entre issues, commits, Pull Requests e baselines.
 
 
-## Classes do projeto
+## Convenções de Nomenclatura
 
-- `JString`
-- `JInteger`
-- `JFloat`
+O projeto utiliza as classes:
+
+- JString
+- JInteger
+- JFloat
+
+O prefixo "J" foi adotado para evitar conflitos com tipos nativos do Python.
+
+Os métodos seguem o padrão camelCase para manter compatibilidade conceitual com a API Java.
 
 
 ## Funcionalidades
@@ -64,7 +70,8 @@ O projeto está organizado nas seguintes baselines:
 * `v1.0.0`: entrega final, auditorias, apresentação gravada e release final.
 
 As baselines devem ser acompanhadas por relatórios de status, issues resolvidas, Pull Requests mesclados, CI verde e tags/releases no GitHub.
-    
+
+- [Relatório de Status - v0.2 JInteger](docs/relatorios/status-v0.2.md)
 
 ## Organização da equipe
 
@@ -75,6 +82,10 @@ As baselines devem ser acompanhadas por relatórios de status, issues resolvidas
 | Thiago Nogueira | Gerente de Configuração | Documentação de itens de configuração, ADRs, adaptações, auditoria e implementação da JFloat. |
 | Rudimar Neves| Relator | Relatórios de status, release notes, CHANGELOG e métodos simples da JInteger. |
 | Arthur Yano | Desenvolvedor de apoio | Documentação de uso de IA, testes simples e métodos simples de JString e JFloat. |
+
+## Regras de Revisão de Código
+* Todos os integrantes da equipe participam ativamente das revisões de Pull Requests (PRs).
+* É estritamente proibido que um integrante aprove o seu próprio Pull Request.
 
 ## Como executar os testes
 
@@ -89,3 +100,10 @@ Para entender as diferenças arquiteturais e os motivos pelos quais alguns méto
 ```bash
 ruff check .
 ```
+## Baselines do Projeto
+
+O projeto é dividido em entregas organizadas (Baselines). Atualmente estamos na primeira fase[cite: 1]:
+
+* **v0.1-functional:** Estrutura inicial do repositório, validação do CI (Ruff, Pytest, Coverage) e formalização do fluxo de trabalho[cite: 1].
+
+Para entender como contribuir, criar branches e enviar seu código, leia obrigatoriamente o nosso [Guia de Contribuição](CONTRIBUTING.md) e o [ADR 0002 de Ramificação](docs/adr/0002-modelo-ramificacao.md)[cite: 1].
