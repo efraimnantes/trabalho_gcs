@@ -1,34 +1,41 @@
-
-
-## `docs/adr/0001-nomenclatura-classes.md`
-
-Coloque:
-
-```markdown
-# ADR 0001 — Nomenclatura das classes
+# ADR 0001 - Nomenclatura das Classes
 
 ## Status
 
-Aprovado.
+Aceito
 
 ## Contexto
 
-O projeto exige a implementação, em Python, de classes equivalentes às classes String, Integer e Float da especificação Java SE 8. Como Python já possui tipos nativos chamados `str`, `int` e `float`, utilizar os mesmos nomes poderia gerar ambiguidade.
+O projeto busca reproduzir funcionalidades inspiradas em classes da linguagem Java utilizando Python.
+
+Existem possíveis conflitos entre nomes utilizados pelo Java e tipos nativos do Python.
 
 ## Decisão
 
-A equipe decidiu utilizar os nomes `JString`, `JInteger` e `JFloat`.
+As classes do projeto utilizarão o prefixo "J":
+
+- JString
+- JInteger
+- JFloat
+
+Os métodos seguirão o padrão camelCase para manter compatibilidade conceitual com a API Java.
 
 ## Justificativa
 
-O prefixo `J` indica que as classes representam uma adaptação do comportamento das classes Java. Essa escolha evita colisões com tipos nativos do Python, mantém os nomes curtos e facilita a identificação dos módulos no código e nos testes.
+A utilização dos nomes String, Integer e Float poderia gerar confusão com tipos já existentes na linguagem Python.
+
+O prefixo J identifica claramente que se trata de uma implementação inspirada na API Java.
 
 ## Consequências
 
-Os arquivos principais do projeto serão:
+- Maior clareza no código.
+- Evita colisões com tipos nativos.
+- Facilita futuras expansões do projeto.
+- Mantém proximidade com a nomenclatura utilizada no Java.
 
-- `javalang/jstring.py`
-- `javalang/jinteger.py`
-- `javalang/jfloat.py`
+## Arquivos Impactados
 
-Os métodos manterão a grafia camelCase da especificação Java.
+- javalang/jstring.py
+- javalang/jinteger.py
+- javalang/jfloat.py
+- README.md

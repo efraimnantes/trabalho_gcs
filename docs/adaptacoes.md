@@ -19,7 +19,28 @@ Enquanto o Java diferencia tipos primitivos (`int`, `float`) de classes *wrapper
 
 ## 5. Tabela de Métodos Adaptados ou Não Implementados
 
-| Classe | Método Original | Status | Motivo / Alternativa em Python |
-| :--- | :--- | :--- | :--- |
-| `JString` | `intern()` | A definir | Dificuldade em replicar a String Pool da JVM exatamente. Avaliando `sys.intern()`. |
-| `JInteger` | `parseInt(String s)` | Adaptado | Lida com exceções `ValueError` do Python para emular `NumberFormatException`. |
+| Classe     | Método Original            | Status               | Motivo / Alternativa em Python                                                                                                                       |
+| :--------- | :------------------------- | :------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `JString`  | `String(StringBuilder)`    | Não implementado     | Python não possui `StringBuilder` nativo equivalente. Usar `str()` quando necessário.                                                                |
+| `JString`  | `intern()`                 | Adaptado/documentado | O pool de strings da JVM não se aplica diretamente ao runtime Python. Pode-se usar a string normalmente; `sys.intern()` será avaliado se necessário. |
+| `JString`  | `getBytes(String charset)` | Adaptado             | Python utiliza encoding por string, como UTF-8. Alternativa: `encode(encoding)`.                                                                     |
+| `JInteger` | `TYPE`                     | Adaptado             | No Java, `Integer.TYPE` retorna a classe que representa o tipo primitivo `int`; em Python foi adaptado para retornar o tipo embutido `int`.          |
+| `JInteger` | `parseInt(String s)`       | Adaptado             | Usa conversão com `int()` e exceções `ValueError` para simular comportamento de entrada inválida.                                                    |
+| `JInteger` | `valueOf(String s)`        | Adaptado             | Retorna uma instância de `JInteger` a partir da conversão nativa com `int()`.                                                                         |
+| `JInteger` | `toBinaryString(int i)`    | Adaptado             | Usa máscara de 32 bits (`i & 0xFFFFFFFF`) para simular a representação unsigned do Java em valores negativos.                                        |
+| `JInteger` | `toOctalString(int i)`     | Adaptado             | Usa máscara de 32 bits e remove o prefixo `0o` gerado pelo Python.                                                                                   |
+| `JInteger` | `toHexString(int i)`       | Adaptado             | Usa máscara de 32 bits e remove o prefixo `0x` gerado pelo Python.                                                                                   |
+| `JInteger` | `floatValue()`             | Adaptado             | Retorna o valor interno convertido para `float`, permitindo interoperabilidade com `JFloat`.                                                         |
+| `JInteger` | `doubleValue()`            | Adaptado             | Retorna o valor interno convertido para `float`, pois Python não diferencia `float` e `double` como Java.                                            |
+| `JInteger` | `byteValue()`              | Adaptado             | Usa máscara de 8 bits (`0xFF`) para simular o comportamento de conversão para `byte` do Java.                                                        |
+| `JInteger` | `shortValue()`             | Adaptado             | Usa máscara de 16 bits (`0xFFFF`) para simular o comportamento de conversão para `short` do Java.                                                    |
+| `JFloat`   | `intValue()`               | Adaptado             | Retorna o valor interno convertido para `int`, permitindo interoperabilidade com `JInteger`.                                                         |
+
+## Conversões Numéricas Complementares
+
+Como o Python possui precisão arbitrária para inteiros, a simulação do comportamento de overflow dos tipos primitivos `byte` e `short` do Java foi adaptada por meio de operações bit a bit.
+
+Para `byteValue()`, é usada a máscara `0xFF`, simulando um inteiro de 8 bits.  
+Para `shortValue()`, é usada a máscara `0xFFFF`, simulando um inteiro de 16 bits.
+
+Essa adaptação permite representar valores fora do intervalo padrão de `byte` e `short` de forma semelhante ao comportamento do Java.
