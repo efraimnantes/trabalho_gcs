@@ -35,6 +35,9 @@ O prefixo "J" foi adotado para evitar conflitos com tipos nativos do Python.
 
 Os métodos seguem o padrão camelCase para manter compatibilidade conceitual com a API Java.
 
+
+## Funcionalidades
+- Suporte à classe `JFloat` com validações IEEE 754 e conversões.
 ## Processo de GCS
 
 A equipe utiliza um fluxo baseado em GitHub Flow para controlar as alterações do projeto.
