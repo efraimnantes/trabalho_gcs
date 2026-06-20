@@ -16,6 +16,12 @@ class JInteger:
         else:
             raise TypeError("Value must be an int or a numeric string")
 
+    def intValue(self) -> int:
+        return self.value
+
+    def longValue(self) -> int:
+        return self.value
+
     def floatValue(self) -> float:
         return float(self.value)
 

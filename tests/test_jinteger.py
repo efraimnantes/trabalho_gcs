@@ -6,6 +6,13 @@ def test_jinteger_creation():
     assert value.value == 10
 
 
+def test_simple_conversions():
+    jint = JInteger(42)
+    assert jint.intValue() == 42
+    assert jint.longValue() == 42
+    assert jint.floatValue() == 42.0
+
+
 def test_complementary_conversions():
     jint = JInteger(42)
     assert jint.doubleValue() == 42.0
