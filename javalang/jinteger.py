@@ -1,3 +1,13 @@
+from typing import Union
+
+
+class JInteger:
+    MAX_VALUE: int = 2147483647
+    MIN_VALUE: int = -2147483648
+    SIZE: int = 32
+    BYTES: int = 4
+    TYPE = int
+
     @staticmethod
     def compare(x: int, y: int) -> int:
         """Equivalente ao Integer.compare(int x, int y) do Java."""
