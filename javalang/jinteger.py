@@ -6,9 +6,19 @@ class JInteger:
     BYTES: int = 4
     TYPE = int
 
+    def __init__(self, value: int | str):
+        if isinstance(value, str):
+            try:
+                self.value = int(value)
+            except ValueError:
+                raise ValueError(f"For input string: '{value}'")
+        elif isinstance(value, int):
+            self.value = value
+        else:
+            raise TypeError("Value must be an int or a numeric string")
+
     @staticmethod
     def compare(x: int, y: int) -> int:
-        """Equivalente ao Integer.compare(int x, int y) do Java."""
         if not isinstance(x, int) or not isinstance(y, int):
             raise TypeError("Arguments must be integers")
 
@@ -20,7 +30,6 @@ class JInteger:
 
     @staticmethod
     def compareUnsigned(x: int, y: int) -> int:
-        """Equivalente ao Integer.compareUnsigned(int x, int y) do Java."""
         if not isinstance(x, int) or not isinstance(y, int):
             raise TypeError("Arguments must be integers")
 
@@ -35,7 +44,6 @@ class JInteger:
 
     @staticmethod
     def toUnsignedString(i: int) -> str:
-        """Equivalente ao Integer.toUnsignedString(int i) do Java."""
         if not isinstance(i, int):
             raise TypeError("Argument must be an integer")
 
