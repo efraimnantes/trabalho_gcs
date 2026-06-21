@@ -79,3 +79,28 @@ def test_to_string():
 
     obj_zero = JFloat(0.0)
     assert obj_zero.toString() == "0.0"
+
+def test_jfloat_static_compare():
+    assert JFloat.compare(1.0, 2.0) == -1
+    assert JFloat.compare(2.0, 2.0) == 0
+    assert JFloat.compare(3.5, 2.0) == 1
+
+def test_jfloat_static_compare_with_negative_values():
+    assert JFloat.compare(-5.0, -2.0) == -1
+    assert JFloat.compare(-2.0, -5.0) == 1
+    assert JFloat.compare(-3.0, -3.0) == 0
+
+def test_jfloat_static_max():
+    assert JFloat.max(1.0, 2.0) == 2.0
+    assert JFloat.max(5.5, 2.5) == 5.5
+    assert JFloat.max(-1.0, -3.0) == -1.0
+
+def test_jfloat_static_min():
+    assert JFloat.min(1.0, 2.0) == 1.0
+    assert JFloat.min(5.5, 2.5) == 2.5
+    assert JFloat.min(-1.0, -3.0) == -3.0
+
+def test_jfloat_static_operations_with_zero_values():
+    assert JFloat.compare(0.0, -0.0) == 0
+    assert JFloat.max(0.0, -0.0) == 0.0
+    assert JFloat.min(0.0, -0.0) == 0.0

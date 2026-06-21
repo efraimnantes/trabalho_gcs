@@ -46,6 +46,9 @@ Enquanto o Java diferencia tipos primitivos (`int`, `float`) de classes *wrapper
 | `JFloat`   | `isNaN()`                  | Adaptado             | Usa `math.isnan()` para verificar valores `NaN`.                                                                                                     |
 | `JFloat`   | `isInfinite()`             | Adaptado             | Usa `math.isinf()` para verificar infinitos positivos e negativos.                                                                                   |
 | `JFloat`   | `isFinite()`               | Adaptado             | Usa `math.isfinite()` para verificar se o valor é finito.                                                                                            |
+| `JFloat`   | `compare(float, float)`    | Adaptado             | Usa comparação nativa de `float` do Python; casos específicos como `NaN`, `0.0` e `-0.0` são tratados como adaptação simplificada em relação ao Java. |
+| `JFloat`   | `max(float, float)`        | Adaptado             | Usa a função nativa `max()` do Python para retornar o maior valor entre dois números de ponto flutuante. |
+| `JFloat`   | `min(float, float)`        | Adaptado             | Usa a função nativa `min()` do Python para retornar o menor valor entre dois números de ponto flutuante. |
 
 ## 6. Conversões Numéricas Complementares
 
