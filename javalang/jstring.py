@@ -212,3 +212,19 @@ class JString:
         No Python, verificamos a igualdade direta com a string de destino.
         """
         return self.value == cs    
+
+    def split(self, regex: str, limit: int = 0):
+        # Usamos maxsplit do Python para emular o limit do Java.
+        if limit > 0:
+            return re.split(regex, self.value, maxsplit=limit - 1)
+        else:
+            return re.split(regex, self.value)
+
+    @staticmethod
+    def valueOf(obj):
+        if obj is None:
+            return JString("null")
+        if isinstance(obj, bool):
+            # No Java os booleanos ficam em minúsculo: "true" ou "false"
+            return JString(str(obj).lower())
+        return JString(str(obj))

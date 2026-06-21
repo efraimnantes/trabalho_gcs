@@ -117,3 +117,8 @@ Na implementação da classe `JString`, os métodos `replace(char, char)` e `rep
 ## JString - Métodos de Expressão Regular (Regex)
 - **Correspondência Total (`matches`):** No Java, o método `matches()` exige que a string inteira obedeça à expressão regular passada. Em Python, a função `re.match()` avalia apenas o início da string, enquanto `re.search()` busca em qualquer parte. Para replicar o comportamento exato do Java sem forçar âncoras (`^` e `$`), utilizámos o método nativo `re.fullmatch()`.
 - **Substituições (`replaceFirst` e `replaceAll`):** Estes métodos foram mapeados diretamente para a função `re.sub()` do Python. A limitação de `replaceFirst` foi alcançada facilmente através da flag nativa `count=1` no próprio método `sub()`.
+
+
+## JString: split() e valueOf()
+* O método `split(String regex, int limit)` foi adaptado unificando a assinatura e utilizando a função `re.split` do Python. O comportamento de limite do Java foi simulado usando o parâmetro `maxsplit`.
+* O método `valueOf(Object)` converte os tipos booleanos primitivos do Python (`True`/`False`) para strings minúsculas (`"true"`/`"false"`), visando manter o comportamento estrito de conversão do Java.
