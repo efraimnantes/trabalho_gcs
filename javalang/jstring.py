@@ -109,7 +109,15 @@ class JString:
             return self._value.endswith(suffix.value)
 
         return self._value.endswith(str(suffix))
+def indexOf(self, target: Union[str, int], fromIndex: int = 0) -> int:
+        if isinstance(target, int):
+            target_str = chr(target)
+        elif isinstance(target, str):
+            target_str = target
+        else:
+            raise TypeError("Target must be a string or an integer (Unicode code point)")
         
+        return self.value.find(target_str, fromIndex)
 
     def lastIndexOf(self, target: Union[str, int], fromIndex: int = None) -> int:
         """
@@ -133,4 +141,4 @@ class JString:
             # O Java procura da direita para a esquerda começando em 'fromIndex'.
             # No Python, limitamos a string do início (0) até (fromIndex + tamanho do alvo).
             limit = fromIndex + len(target_str)
-            return self.value.rfind(target_str, 0, limit)    
+            return self.value.rfind(target_str, 0, limit)
