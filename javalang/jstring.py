@@ -60,3 +60,19 @@ class JString:
         # No Python, para adaptar o hashCode() do Java de forma nativa,
         # implementamos o método especial __hash__
         return hash(self._value)
+
+    def substring(self, beginIndex: int, endIndex: int = None):
+        if beginIndex < 0 or beginIndex > len(self._value):
+            raise IndexError("String index out of range")
+        
+        if endIndex is None:
+            return JString(self._value[beginIndex:])
+            
+        if endIndex < beginIndex or endIndex > len(self._value):
+            raise IndexError("String index out of range")
+            
+        return JString(self._value[beginIndex:endIndex])
+
+    def subSequence(self, beginIndex: int, endIndex: int):
+        # No Java, subSequence na classe String apenas chama o substring
+        return self.substring(beginIndex, endIndex)
