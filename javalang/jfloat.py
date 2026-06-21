@@ -93,3 +93,6 @@ class JFloat:
         """Equivalente ao Float.min(float a, float b) do Java."""
         return min(float(x), float(y))
    
+    def __str__(self):
+        return str(self.value)
+        

@@ -105,3 +105,6 @@
         if a <= b:
             return a    
         return b
+
+    def __str__(self):
+        return str(self.value)
