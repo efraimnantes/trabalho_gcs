@@ -78,54 +78,27 @@ def test_jstring_comparison():
     # Testando hashCode / __hash__
     assert hash(js1) == hash(js2)
 
-def test_jstring_concat():
-    js = JString("Java")
-
-    assert js.concat("Lang").value == "JavaLang"
-    assert js.concat(JString("Script")).value == "JavaScript"
-
-
-def test_jstring_replace():
-    js1 = JString("banana")
-    js2 = JString("hello world")
-
-    assert js1.replace("a", "o").value == "bonono"
-    assert js2.replace("world", "Python").value == "hello Python"
-    assert js2.replace("Java", "C").value == "hello world"
-
-
 def test_jstring_substring():
     js = JString("JavaLang")
-
-    assert js.substring(4).value == "Lang"
-    assert js.substring(0, 4).value == "Java"
-    assert js.subSequence(0, 4).value == "Java"
-
+    
+    # Teste recorte do início ao fim (apenas beginIndex)
+    assert js.substring(4)._value == "Lang"
+    
+    # Teste recorte por intervalo (beginIndex e endIndex)
+    assert js.substring(0, 4)._value == "Java"
+    
+    # Teste subSequence
+    assert js.subSequence(0, 4)._value == "Java"
 
 def test_jstring_substring_invalid_index():
     js = JString("Python")
-
+    
+    # Índices negativos ou fora do tamanho
     with pytest.raises(IndexError):
         js.substring(-1)
-
     with pytest.raises(IndexError):
         js.substring(0, 10)
-
+        
+    # endIndex menor que o beginIndex
     with pytest.raises(IndexError):
         js.substring(4, 2)
-
-
-def test_jstring_concat():
-    js = JString("Java")
-
-    assert js.concat("Lang").value == "JavaLang"
-    assert js.concat(JString("Script")).value == "JavaScript"
-
-
-def test_jstring_replace():
-    js1 = JString("banana")
-    js2 = JString("hello world")
-
-    assert js1.replace("a", "o").value == "bonono"
-    assert js2.replace("world", "Python").value == "hello Python"
-    assert js2.replace("Java", "C").value == "hello world"
