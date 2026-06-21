@@ -58,40 +58,73 @@ def test_jstring_char_at_invalid():
     with pytest.raises(IndexError):
         js.charAt(3)
 
+
 def test_jstring_comparison():
     js1 = JString("Java")
     js2 = JString("Java")
     js3 = JString("java")
     js4 = JString("Python")
-    
-    # Testando equals()
+
     assert js1.equals(js2) is True
     assert js1.equals(js3) is False
     assert js1.equals("Java") is True
     assert js1.equals(js4) is False
-    
-    # Testando equalsIgnoreCase()
+
     assert js1.equalsIgnoreCase(js3) is True
     assert js1.equalsIgnoreCase("JAVA") is True
     assert js1.equalsIgnoreCase(js4) is False
-    
-    # Testando hashCode / __hash__
+
     assert hash(js1) == hash(js2)
+
+
+def test_jstring_concat():
+    js = JString("Java")
+
+    assert js.concat("Lang").value == "JavaLang"
+    assert js.concat(JString("Script")).value == "JavaScript"
+
+
+def test_jstring_replace():
+    js1 = JString("banana")
+    js2 = JString("hello world")
+
+    assert js1.replace("a", "o").value == "bonono"
+    assert js2.replace("world", "Python").value == "hello Python"
+    assert js2.replace("Java", "C").value == "hello world"
+
+
+def test_jstring_substring():
+    js = JString("JavaLang")
+
+    assert js.substring(4).value == "Lang"
+    assert js.substring(0, 4).value == "Java"
+    assert js.subSequence(0, 4).value == "Java"
+
+
+def test_jstring_substring_invalid_index():
+    js = JString("Python")
+
+    with pytest.raises(IndexError):
+        js.substring(-1)
+
+    with pytest.raises(IndexError):
+        js.substring(0, 10)
+
+    with pytest.raises(IndexError):
+        js.substring(4, 2)
+
 
 def test_jstring_simple_search():
     js = JString("JavaLang")
-    
-    # Teste contains (substring existente e inexistente)
+
     assert js.contains("Java") is True
     assert js.contains(JString("Lang")) is True
     assert js.contains("Python") is False
-    
-    # Teste startsWith (prefixo existente e inexistente)
+
     assert js.startsWith("Java") is True
     assert js.startsWith(JString("Java")) is True
     assert js.startsWith("Lang") is False
-    
-    # Teste endsWith (sufixo existente e inexistente)
+
     assert js.endsWith("Lang") is True
     assert js.endsWith(JString("Lang")) is True
     assert js.endsWith("Java") is False

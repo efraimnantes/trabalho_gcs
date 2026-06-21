@@ -99,3 +99,9 @@ Principais adaptações realizadas:
 * O método `doubleValue()` não exige distinção específica, pois Python utiliza `float` com precisão equivalente ao `double` em muitos contextos.
 
 Essas decisões permitem representar o comportamento principal da classe `Float` do Java SE 8 dentro das limitações e características do Python.
+
+
+Essas decisões permitem representar o comportamento principal da classe `Float` do Java SE 8 dentro das limitações e características do Python.
+
+### JString: Adaptação do método `replace`
+Na implementação da classe `JString`, os métodos `replace(char, char)` e `replace(CharSequence, CharSequence)` do Java foram unificados em um único método `replace(target, replacement)`. Isso ocorre porque o Python não suporta sobrecarga de métodos por assinatura e não possui um tipo primitivo `char` distinto de `str`.

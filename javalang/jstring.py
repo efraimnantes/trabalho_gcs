@@ -44,34 +44,66 @@ class JString:
 
     def equals(self, anObject: object) -> bool:
         if isinstance(anObject, JString):
-            return self._value == anObject._value
+            return self._value == anObject.value
+
         if isinstance(anObject, str):
             return self._value == anObject
+
         return False
 
     def equalsIgnoreCase(self, anotherString: "JString | str") -> bool:
         if isinstance(anotherString, JString):
-            return self._value.lower() == anotherString._value.lower()
+            return self._value.lower() == anotherString.value.lower()
+
         if isinstance(anotherString, str):
             return self._value.lower() == anotherString.lower()
+
         return False
 
-    def __hash__(self) -> int:
-        # No Python, para adaptar o hashCode() do Java de forma nativa,
-        # implementamos o método especial __hash__
+    def hashCode(self) -> int:
         return hash(self._value)
 
-    def contains(self, s):
+    def __hash__(self) -> int:
+        return self.hashCode()
+
+    def substring(self, beginIndex: int, endIndex=None):
+        if beginIndex < 0 or beginIndex > len(self._value):
+            raise IndexError("String index out of range")
+
+        if endIndex is None:
+            return JString(self._value[beginIndex:])
+
+        if endIndex < beginIndex or endIndex > len(self._value):
+            raise IndexError("String index out of range")
+
+        return JString(self._value[beginIndex:endIndex])
+
+    def subSequence(self, beginIndex: int, endIndex: int):
+        return self.substring(beginIndex, endIndex)
+
+    def concat(self, str_to_concat):
+        if isinstance(str_to_concat, JString):
+            return JString(self._value + str_to_concat.value)
+
+        return JString(self._value + str(str_to_concat))
+
+    def replace(self, target, replacement):
+        return JString(self._value.replace(str(target), str(replacement)))
+
+    def contains(self, s) -> bool:
         if isinstance(s, JString):
-            return s._value in self._value
+            return s.value in self._value
+
         return str(s) in self._value
 
-    def startsWith(self, prefix):
+    def startsWith(self, prefix) -> bool:
         if isinstance(prefix, JString):
-            return self._value.startswith(prefix._value)
+            return self._value.startswith(prefix.value)
+
         return self._value.startswith(str(prefix))
 
-    def endsWith(self, suffix):
+    def endsWith(self, suffix) -> bool:
         if isinstance(suffix, JString):
-            return self._value.endswith(suffix._value)
+            return self._value.endswith(suffix.value)
+
         return self._value.endswith(str(suffix))
