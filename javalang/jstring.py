@@ -1,12 +1,12 @@
-from __future__ import annotations
+from _future_ import annotations
 
 
 class JString:
     """Adaptação inicial da classe java.lang.String para Python."""
 
-    __slots__ = ("_value",)
+    _slots_ = ("_value",)
 
-    def __init__(self, value: str | JString | None = "") -> None:
+    def _init_(self, value: str | JString | None = "") -> None:
         if value is None:
             self._value = ""
             return
@@ -23,3 +23,15 @@ class JString:
     @property
     def value(self) -> str:
         return self._value
+
+    def length(self) -> int:
+        return len(self._value)
+
+    def isEmpty(self) -> bool:
+        return self.length() == 0
+
+    def charAt(self, index: int) -> str:
+        if index < 0 or index >= self.length():
+            raise IndexError("String index out of range")
+
+        return self._value[index]
