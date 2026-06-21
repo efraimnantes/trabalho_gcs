@@ -175,3 +175,28 @@ def test_last_index_of_int():
     assert jstr.lastIndexOf(97) == 5
     assert jstr.lastIndexOf(97, 4) == 3
     assert jstr.lastIndexOf(120) == -1
+
+
+
+# novos testes para toCharArray e getBytes
+
+def test_to_char_array():
+    jstr = JString("hello")
+    chars = jstr.toCharArray()
+    assert chars == ["h", "e", "l", "l", "o"]
+    assert len(chars) == 5
+
+def test_get_bytes_default():
+    jstr = JString("java")
+    b = jstr.getBytes()
+    assert b == b"java"
+    assert isinstance(b, bytes)
+
+def test_get_bytes_with_charset():
+    jstr = JString("ação")
+
+    b_utf8 = jstr.getBytes("utf-8")
+    assert b_utf8 == "ação".encode("utf-8")
+    
+    b_latin1 = jstr.getBytes("latin-1")
+    assert b_latin1 == "ação".encode("latin-1")
