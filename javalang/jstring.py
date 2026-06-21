@@ -1,9 +1,9 @@
 class JString:
     """Adaptação inicial da classe java.lang.String para Python."""
 
-    _slots_ = ("_value",)
+    __slots__ = ("_value",)
 
-    def _init_(self, value="") -> None:
+    def __init__(self, value="") -> None:
         if value is None:
             self._value = ""
             return
