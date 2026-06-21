@@ -1,12 +1,9 @@
-from _future_ import annotations
-
-
 class JString:
     """Adaptação inicial da classe java.lang.String para Python."""
 
     _slots_ = ("_value",)
 
-    def _init_(self, value: str | JString | None = "") -> None:
+    def _init_(self, value="") -> None:
         if value is None:
             self._value = ""
             return
