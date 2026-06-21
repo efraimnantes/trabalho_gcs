@@ -102,3 +102,18 @@ def test_jstring_substring_invalid_index():
     # endIndex menor que o beginIndex
     with pytest.raises(IndexError):
         js.substring(4, 2)
+
+def test_jstring_concat():
+    js = JString("Java")
+
+    assert js.concat("Lang").value == "JavaLang"
+    assert js.concat(JString("Script")).value == "JavaScript"
+
+
+def test_jstring_replace():
+    js1 = JString("banana")
+    js2 = JString("hello world")
+
+    assert js1.replace("a", "o").value == "bonono"
+    assert js2.replace("world", "Python").value == "hello Python"
+    assert js2.replace("Java", "C").value == "hello world"
