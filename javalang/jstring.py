@@ -56,17 +56,34 @@ class JString:
             return self._value.lower() == anotherString.lower()
         return False
 
-    def __hash__(self) -> int:
+      def __hash__(self) -> int:
         # No Python, para adaptar o hashCode() do Java de forma nativa,
         # implementamos o método especial __hash__
         return hash(self._value)
 
+    def substring(self, beginIndex: int, endIndex: int = None):
+        if beginIndex < 0 or beginIndex > len(self._value):
+            raise IndexError("String index out of range")
+
+        if endIndex is None:
+            return JString(self._value[beginIndex:])
+
+        if endIndex < beginIndex or endIndex > len(self._value):
+            raise IndexError("String index out of range")
+
+        return JString(self._value[beginIndex:endIndex])
+
+    def subSequence(self, beginIndex: int, endIndex: int):
+        # No Java, subSequence na classe String apenas chama substring.
+        return self.substring(beginIndex, endIndex)
+
     def concat(self, str_to_concat):
         if isinstance(str_to_concat, JString):
-            return JString(self._value + str_to_concat._value)
+            return JString(self._value + str_to_concat.value)
+
         return JString(self._value + str(str_to_concat))
 
     def replace(self, target, replacement):
-        # No Python, não há distinção entre char e CharSequence (ambos são str).
-        # Portanto, este único método resolve as duas assinaturas do Java.
+        # No Python, não há distinção entre char e CharSequence.
+        # Portanto, este único método adapta as duas assinaturas do Java.
         return JString(self._value.replace(str(target), str(replacement)))
