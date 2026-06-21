@@ -60,3 +60,13 @@ class JString:
         # No Python, para adaptar o hashCode() do Java de forma nativa,
         # implementamos o método especial __hash__
         return hash(self._value)
+
+    def concat(self, str_to_concat):
+        if isinstance(str_to_concat, JString):
+            return JString(self._value + str_to_concat._value)
+        return JString(self._value + str(str_to_concat))
+
+    def replace(self, target, replacement):
+        # No Python, não há distinção entre char e CharSequence (ambos são str).
+        # Portanto, este único método resolve as duas assinaturas do Java.
+        return JString(self._value.replace(str(target), str(replacement)))
