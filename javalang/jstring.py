@@ -137,4 +137,4 @@ class JString:
             return self.value.rfind(target_str)
 
         limit = fromIndex + len(target_str)
-        return self.value.rfind(target_str, 0, limit)mit)
+        return self.value.rfind(target_str, 0, limit)
