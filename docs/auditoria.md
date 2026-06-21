@@ -41,3 +41,17 @@ O versionamento semântico foi respeitado. As baselines foram geradas ao alcanç
 * **A importância da rastreabilidade:** Relacionar commits com issues salvou muito tempo na hora de entender o motivo de uma alteração de código semanas depois.
 * **Revisão de código (Code Review):** Encontramos pequenos erros (como indentação fora do padrão do Python) antes de integrar na `main`, evitando quebras em cadeia.
 * **Granularidade das branches:** Criar branches pequenas e de curta duração (uma para cada issue) facilitou a aprovação dos Pull Requests e evitou grandes conflitos de *merge*.
+
+## Auditoria Final de Rastreabilidade (Issue #88)
+
+**Objetivo:** Verificar a integridade da rastreabilidade do projeto antes da entrega final.
+
+**Verificações Realizadas:**
+1. **Commits e Issues:** Validado que as mensagens de commit utilizam a tag `refs #N` para vincular o histórico de alterações às tarefas correspondentes.
+2. **Pull Requests (PRs):** Confirmado o uso da palavra-chave `Closes #N` nas descrições dos PRs, garantindo o fechamento automático das issues após o merge.
+3. **Organização:** Verificado que as issues ativas e concluídas possuem labels adequadas (como `feature`, `test`, `docs`) e estão atreladas às Milestones corretas (ex: v0.1, v0.2, etc).
+4. **Revisão de Código:** O repositório manteve a política de exigir aprovação prévia de revisores (*Reviewers*) antes que qualquer código fosse integrado à branch principal.
+5. **Integração Contínua (CI):** A esteira de testes automatizados (GitHub Actions com pytest) foi executada e atestada com sucesso (status verde) nos PRs mesclados.
+
+**Conclusão e Desvios:**
+A rastreabilidade do projeto encontra-se íntegra e atende aos critérios estabelecidos. Pequenos desvios de padronização nas fases iniciais foram rapidamente corrigidos e justificados pela curva de aprendizado da equipe com a ferramenta, não comprometendo o rastreio final. O projeto está pronto para validação.
