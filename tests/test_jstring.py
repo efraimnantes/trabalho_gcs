@@ -247,3 +247,24 @@ def test_content_equals():
     
     assert jstr.contentEquals("hello world") is True
     assert jstr.contentEquals("hello") is False
+
+def test_split_regex():
+    jstr = JString("maca,banana,uva")
+    assert jstr.split(",") == ["maca", "banana", "uva"]
+
+def test_split_with_limit():
+    jstr = JString("a-b-c-d")
+    # Limite de 2 partes: corta na primeira ocorrência e mantém o resto
+    assert jstr.split("-", 2) == ["a", "b-c-d"]
+
+def test_valueOf():
+    # Testando int e float
+    assert JString.valueOf(100).value == "100"
+    assert JString.valueOf(10.5).value == "10.5"
+    
+    # Testando bool (garantindo o padrão minúsculo do Java)
+    assert JString.valueOf(True).value == "true"
+    assert JString.valueOf(False).value == "false"
+    
+    # Testando objeto genérico (None)
+    assert JString.valueOf(None).value == "null"
