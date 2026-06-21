@@ -200,3 +200,25 @@ def test_get_bytes_with_charset():
     
     b_latin1 = jstr.getBytes("latin-1")
     assert b_latin1 == "ação".encode("latin-1")
+
+
+
+# novos testes para regex 
+
+def test_matches_full_string():
+    jstr = JString("hello123world")
+    assert jstr.matches("[a-z]+[0-9]+[a-z]+") is True
+    
+    assert jstr.matches("[0-9]+") is False
+
+def test_replace_first_regex():
+    jstr = JString("gato, cachorro, gato")
+
+    result = jstr.replaceFirst("gato", "passarinho")
+    assert result == "passarinho, cachorro, gato"
+
+def test_replace_all_regex():
+    jstr = JString("O ano é 2023, logo será 2024.")
+
+    result = jstr.replaceAll("\\d+", "[DATA]")
+    assert result == "O ano é [DATA], logo será [DATA]."
