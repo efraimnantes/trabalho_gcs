@@ -126,3 +126,35 @@ Na implementação da classe `JString`, os métodos `replace(char, char)` e `rep
 
 ## Interoperabilidade e Métodos Mágicos
 * Para que o método `JString.valueOf(Object)` funcione corretamente recebendo instâncias de `JInteger` e `JFloat`, foi necessário implementar o método mágico `__str__` nessas classes wrapper. Isso adapta o comportamento do método `toString()` nativo dos objetos Java para o ecossistema Python.
+
+
+
+# Adaptações do Java para Python (Classe JString)
+
+> **Documentação elaborada e mantida por:** Arthur Yano
+
+Este documento regista as decisões arquiteturais e as adaptações necessárias ao transpor a classe `String` do Java para o ecossistema Python, justificando métodos não implementados integralmente e apresentando as alternativas adotadas.
+
+## 1. Métodos dependentes de StringBuilder e StringBuffer
+No Java, métodos como `contentEquals(StringBuffer sb)` existem porque as strings são imutáveis e `StringBuffer` lida com mutabilidade thread-safe. 
+* **Decisão:** Não implementaremos `StringBuffer` ou `StringBuilder` no nosso projeto.
+* **Alternativa Python:** Em Python, a mutabilidade eficiente de strings é alcançada construindo listas de caracteres e unindo-as com `"".join(lista)`. A verificação de conteúdo (`contentEquals`) foi adaptada para aceitar strings e comparar diretamente usando o operador `==`.
+
+## 2. Dependência de Locale e Charset
+No Java, métodos como `toUpperCase(Locale locale)` ou `getBytes(Charset charset)` dependem de objetos complexos do sistema.
+* **Decisão:** Simplificámos o uso de Locale e Charset.
+* **Alternativa Python:** O Python não exige objetos `Locale` para alterar a caixa do texto; o método nativo `.upper()` já é otimizado para o padrão Unicode. Para `getBytes()`, definimos "utf-8" como o padrão explícito (string), delegando a validação ao método `.encode()` do Python, que lançará um `LookupError` caso o charset não exista (em vez do `UnsupportedEncodingException` do Java).
+
+## 3. O método `String.intern()`
+No Java, o `intern()` coloca a string num "pool" de memória para otimizar comparações de referência (`==`).
+* **Decisão:** O método `intern()` não será implementado na `JString`.
+* **Alternativa Python:** O interpretador CPython já faz o *interning* automático de muitas strings curtas e identificadores. Caso seja estritamente necessário forçar esse comportamento num projeto Python, a alternativa nativa é a função `sys.intern()`.
+
+## 4. Diferenças de Unicode e Code Points
+No Java (que usa UTF-16 sob o capô), caracteres fora do plano básico multilíngue (como emojis) ocupam 2 posições (surrogate pairs), fazendo com que `length()` e os índices fiquem dessincronizados do número real de símbolos.
+* **Decisão:** Manteremos a abstração do Python.
+* **Alternativa Python:** Desde a PEP 393, o Python resolveu isto internamente: 1 caractere é sempre 1 caractere, independentemente do seu tamanho em bytes. Métodos Java como `codePointAt()` foram adaptados utilizando a função nativa `ord()`, e não precisamos de lidar com lógicas complexas de pares substitutos.
+
+## 5. Diferenças em Expressões Regulares (Regex)
+* **Decisão:** O comportamento do Java foi replicado, mas com ferramentas ligeiramente diferentes.
+* **Alternativa Python:** No Java, o método `matches()` exige a correspondência de toda a string. Em Python, utilizamos `re.fullmatch()` para replicar exatamente este comportamento, em vez do tradicional `re.match()` ou `re.search()`. Para `replaceFirst()`, utilizamos `re.sub()` limitando a execução com o parâmetro `count=1`.
