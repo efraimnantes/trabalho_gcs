@@ -107,3 +107,11 @@ O projeto é dividido em entregas organizadas (Baselines). Atualmente estamos na
 * **v0.1-functional:** Estrutura inicial do repositório, validação do CI (Ruff, Pytest, Coverage) e formalização do fluxo de trabalho[cite: 1].
 
 Para entender como contribuir, criar branches e enviar seu código, leia obrigatoriamente o nosso [Guia de Contribuição](CONTRIBUTING.md) e o [ADR 0002 de Ramificação](docs/adr/0002-modelo-ramificacao.md)[cite: 1].
+
+
+
+## Decisões de Arquitetura e Adaptações
+
+Como o Java e o Python possuem ecossistemas e lógicas de gestão de memória diferentes, algumas funcionalidades da classe `String` foram adaptadas para aproveitar os recursos nativos do Python.
+
+Para ler a lista completa de métodos adaptados, comportamentos alterados (como RegEx e Unicode) e justificativas, consulte o nosso documento de [Adaptações do Java para Python (por Arthur Yano)](docs/adaptacoes.md).
