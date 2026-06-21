@@ -89,3 +89,21 @@ class JString:
 
     def replace(self, target, replacement):
         return JString(self._value.replace(str(target), str(replacement)))
+
+    def contains(self, s) -> bool:
+        if isinstance(s, JString):
+            return s.value in self._value
+
+        return str(s) in self._value
+
+    def startsWith(self, prefix) -> bool:
+        if isinstance(prefix, JString):
+            return self._value.startswith(prefix.value)
+
+        return self._value.startswith(str(prefix))
+
+    def endsWith(self, suffix) -> bool:
+        if isinstance(suffix, JString):
+            return self._value.endswith(suffix.value)
+
+        return self._value.endswith(str(suffix))
