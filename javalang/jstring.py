@@ -60,3 +60,18 @@ class JString:
         # No Python, para adaptar o hashCode() do Java de forma nativa,
         # implementamos o método especial __hash__
         return hash(self._value)
+
+    def contains(self, s):
+        if isinstance(s, JString):
+            return s._value in self._value
+        return str(s) in self._value
+
+    def startsWith(self, prefix):
+        if isinstance(prefix, JString):
+            return self._value.startswith(prefix._value)
+        return self._value.startswith(str(prefix))
+
+    def endsWith(self, suffix):
+        if isinstance(suffix, JString):
+            return self._value.endswith(suffix._value)
+        return self._value.endswith(str(suffix))
