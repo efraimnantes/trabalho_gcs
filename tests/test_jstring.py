@@ -77,3 +77,22 @@ def test_jstring_comparison():
     
     # Testando hashCode / __hash__
     assert hash(js1) == hash(js2)
+
+def test_jstring_concat():
+    js = JString("Java")
+    # Testa concatenação com string não vazia
+    assert js.concat("Lang")._value == "JavaLang"
+    assert js.concat(JString("Script"))._value == "JavaScript"
+
+def test_jstring_replace():
+    js1 = JString("banana")
+    js2 = JString("hello world")
+    
+    # Testa substituição de "char" (letra por letra)
+    assert js1.replace("a", "o")._value == "bonono"
+    
+    # Testa substituição de CharSequence (palavras)
+    assert js2.replace("world", "Python")._value == "hello Python"
+    
+    # Testa substituição não encontrada (deve retornar igual)
+    assert js2.replace("Java", "C")._value == "hello world"
