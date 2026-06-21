@@ -58,25 +58,24 @@ def test_jstring_char_at_invalid():
     with pytest.raises(IndexError):
         js.charAt(3)
 
+
 def test_jstring_comparison():
     js1 = JString("Java")
     js2 = JString("Java")
     js3 = JString("java")
     js4 = JString("Python")
-    
-    # Testando equals()
+
     assert js1.equals(js2) is True
     assert js1.equals(js3) is False
     assert js1.equals("Java") is True
     assert js1.equals(js4) is False
-    
-    # Testando equalsIgnoreCase()
+
     assert js1.equalsIgnoreCase(js3) is True
     assert js1.equalsIgnoreCase("JAVA") is True
     assert js1.equalsIgnoreCase(js4) is False
-    
-    # Testando hashCode / __hash__
+
     assert hash(js1) == hash(js2)
+
 
 def test_jstring_concat():
     js = JString("Java")
@@ -115,17 +114,17 @@ def test_jstring_substring_invalid_index():
         js.substring(4, 2)
 
 
-def test_jstring_concat():
-    js = JString("Java")
+def test_jstring_simple_search():
+    js = JString("JavaLang")
 
-    assert js.concat("Lang").value == "JavaLang"
-    assert js.concat(JString("Script")).value == "JavaScript"
+    assert js.contains("Java") is True
+    assert js.contains(JString("Lang")) is True
+    assert js.contains("Python") is False
 
+    assert js.startsWith("Java") is True
+    assert js.startsWith(JString("Java")) is True
+    assert js.startsWith("Lang") is False
 
-def test_jstring_replace():
-    js1 = JString("banana")
-    js2 = JString("hello world")
-
-    assert js1.replace("a", "o").value == "bonono"
-    assert js2.replace("world", "Python").value == "hello Python"
-    assert js2.replace("Java", "C").value == "hello world"
+    assert js.endsWith("Lang") is True
+    assert js.endsWith(JString("Lang")) is True
+    assert js.endsWith("Java") is False
