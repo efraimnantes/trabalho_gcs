@@ -77,3 +77,21 @@ def test_jstring_comparison():
     
     # Testando hashCode / __hash__
     assert hash(js1) == hash(js2)
+
+def test_jstring_simple_search():
+    js = JString("JavaLang")
+    
+    # Teste contains (substring existente e inexistente)
+    assert js.contains("Java") is True
+    assert js.contains(JString("Lang")) is True
+    assert js.contains("Python") is False
+    
+    # Teste startsWith (prefixo existente e inexistente)
+    assert js.startsWith("Java") is True
+    assert js.startsWith(JString("Java")) is True
+    assert js.startsWith("Lang") is False
+    
+    # Teste endsWith (sufixo existente e inexistente)
+    assert js.endsWith("Lang") is True
+    assert js.endsWith(JString("Lang")) is True
+    assert js.endsWith("Java") is False
