@@ -129,8 +129,6 @@ def test_jstring_simple_search():
     assert js.endsWith(JString("Lang")) is True
     assert js.endsWith("Java") is False
 
-from javalang.jstring import JString
-
 def test_index_of_string():
     jstr = JString("hello world")
     # Ocorrência encontrada
