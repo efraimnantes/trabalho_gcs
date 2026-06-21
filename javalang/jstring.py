@@ -1,3 +1,5 @@
+from typing import Union
+
 class JString:
     """Adaptação inicial da classe java.lang.String para Python."""
 
