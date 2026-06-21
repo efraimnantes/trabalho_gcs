@@ -138,3 +138,19 @@ class JString:
 
         limit = fromIndex + len(target_str)
         return self.value.rfind(target_str, 0, limit)
+
+
+
+    def toCharArray(self) -> list[str]:
+        """
+        Equivalente ao toCharArray() do Java.
+        Retorna uma lista de caracteres (strings de tamanho 1 no Python).
+        """
+        return list(self.value)
+
+    def getBytes(self, charset: str = "utf-8") -> bytes:
+        """
+        Equivalente aos métodos getBytes() e getBytes(String charsetName) do Java.
+        Utiliza 'utf-8' como padrão, similar ao comportamento moderno.
+        """
+        return self.value.encode(charset)

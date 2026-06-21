@@ -105,3 +105,10 @@ Essas decisões permitem representar o comportamento principal da classe `Float`
 
 ### JString: Adaptação do método `replace`
 Na implementação da classe `JString`, os métodos `replace(char, char)` e `replace(CharSequence, CharSequence)` do Java foram unificados em um único método `replace(target, replacement)`. Isso ocorre porque o Python não suporta sobrecarga de métodos por assinatura e não possui um tipo primitivo `char` distinto de `str`.
+
+
+# Adaptações do Java para Python
+
+## JString - Tratamento de Charsets (getBytes)
+- **Comportamento Padrão:** No Java, `getBytes()` sem argumentos utiliza o *charset* padrão do sistema operativo (o que muitas vezes causa bugs de portabilidade). No Python, optámos por definir explicitamente o **UTF-8** como padrão no método `.getBytes()`, garantindo um comportamento previsível em qualquer sistema.
+- **Exceções:** No Java, passar um charset inválido como argumento lança uma `UnsupportedEncodingException`. Na nossa implementação Python, delegamos a conversão para o método `.encode()` nativo da linguagem, que lançará um erro `LookupError` caso o charset não seja reconhecido. Decidimos manter a exceção nativa do Python por questões de simplicidade e integração com a linguagem.
