@@ -128,3 +128,26 @@ def test_jstring_simple_search():
     assert js.endsWith("Lang") is True
     assert js.endsWith(JString("Lang")) is True
     assert js.endsWith("Java") is False
+
+def test_index_of_string():
+    jstr = JString("hello world")
+    # Ocorrência encontrada
+    assert jstr.indexOf("world") == 6
+    assert jstr.indexOf("l") == 2
+    # Ocorrência inexistente
+    assert jstr.indexOf("x") == -1
+
+def test_index_of_string_with_from_index():
+    jstr = JString("hello world")
+    # Busca a partir do índice inicial
+    assert jstr.indexOf("l", 3) == 3
+    assert jstr.indexOf("l", 4) == 9
+    assert jstr.indexOf("world", 10) == -1
+
+def test_index_of_int():
+    jstr = JString("hello world")
+    # 111 é o código Unicode para a letra 'o'
+    assert jstr.indexOf(111) == 4
+    assert jstr.indexOf(111, 5) == 7
+    # 120 é o código Unicode para a letra 'x'
+    assert jstr.indexOf(120) == -1    
