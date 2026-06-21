@@ -13,3 +13,9 @@
 * Constantes e verificações IEEE 754 (`isNaN`, `isInfinite`, `isFinite`).
 * Conversões numéricas básicas (`intValue`, `longValue`, `byteValue`).
 
+## [0.4.0] - Baseline JString
+### Adicionado
+- Implementação completa da classe `JString`.
+- Métodos de busca, conversões para array/bytes, regex e comparação ordenada.
+- Suite de testes unitários abrangente para `JString`.
+- Relatório de status e documentação de decisões arquiteturais (`docs/adaptacoes.md` e `docs/relatorios/status-v0.4.md`).
