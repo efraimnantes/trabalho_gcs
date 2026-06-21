@@ -122,3 +122,7 @@ Na implementação da classe `JString`, os métodos `replace(char, char)` e `rep
 ## JString: split() e valueOf()
 * O método `split(String regex, int limit)` foi adaptado unificando a assinatura e utilizando a função `re.split` do Python. O comportamento de limite do Java foi simulado usando o parâmetro `maxsplit`.
 * O método `valueOf(Object)` converte os tipos booleanos primitivos do Python (`True`/`False`) para strings minúsculas (`"true"`/`"false"`), visando manter o comportamento estrito de conversão do Java.
+
+
+## Interoperabilidade e Métodos Mágicos
+* Para que o método `JString.valueOf(Object)` funcione corretamente recebendo instâncias de `JInteger` e `JFloat`, foi necessário implementar o método mágico `__str__` nessas classes wrapper. Isso adapta o comportamento do método `toString()` nativo dos objetos Java para o ecossistema Python.
