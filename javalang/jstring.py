@@ -32,3 +32,12 @@ class JString:
             raise IndexError("String index out of range")
 
         return self._value[index]
+
+    def toLowerCase(self):
+        return JString(self._value.lower())
+
+    def toUpperCase(self):
+        return JString(self._value.upper())
+
+    def trim(self):
+        return JString(self._value.strip())
