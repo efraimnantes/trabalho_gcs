@@ -128,3 +128,24 @@ def test_jstring_simple_search():
     assert js.endsWith("Lang") is True
     assert js.endsWith(JString("Lang")) is True
     assert js.endsWith("Java") is False
+
+
+# novos testes para lastIndexOf
+
+def test_last_index_of_string():
+    jstr = JString("banana")
+    assert jstr.lastIndexOf("a") == 5
+    assert jstr.lastIndexOf("na") == 4
+    assert jstr.lastIndexOf("x") == -1
+
+def test_last_index_of_string_with_from_index():
+    jstr = JString("banana")
+    assert jstr.lastIndexOf("a", 4) == 3
+    assert jstr.lastIndexOf("a", 2) == 1
+    assert jstr.lastIndexOf("na", 3) == 2
+
+def test_last_index_of_int():
+    jstr = JString("banana")
+    assert jstr.lastIndexOf(97) == 5
+    assert jstr.lastIndexOf(97, 4) == 3
+    assert jstr.lastIndexOf(120) == -1    
