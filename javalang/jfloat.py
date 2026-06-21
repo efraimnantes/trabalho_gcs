@@ -1,4 +1,3 @@
-import math
 from typing import Union
 
 class JFloat:
@@ -47,7 +46,7 @@ class JFloat:
 
     def intValue(self) -> int:
         """Equivalente ao Float.intValue() do Java.
-        Retorna o valor interno convertido para int primitivo (truncado)."""
+        Retorna o valor interno convertido para int primitivo truncado."""
         return int(self.value)
 
     def longValue(self) -> int:
@@ -58,12 +57,39 @@ class JFloat:
         """Equivalente ao Float.byteValue() do Java, simulando overflow de byte."""
         return (int(self.value) + 128) % 256 - 128
 
-    def isNaN(self) -> bool:
-        return math.isnan(self.value)
+    def floatValue(self) -> float:
+        """Equivalente ao Float.floatValue() do Java."""
+        return float(self.value)
 
-    def isInfinite(self) -> bool:
-        return math.isinf(self.value)
+    def doubleValue(self) -> float:
+        """Equivalente ao Float.doubleValue() do Java.
+        Em Python, retorna o mesmo tipo nativo float."""
+        return float(self.value)
+
+    def toString(self) -> str:
+        """Equivalente ao Float.toString() do Java como método de instância."""
+        return str(self.value)
+    
 
     @staticmethod
-    def isFinite(f) -> bool:
-        return math.isfinite(float(f))
+    def compare(x: float, y: float) -> int:
+        """Equivalente ao Float.compare(float f1, float f2) do Java."""
+        x = float(x)
+        y = float(y)
+
+        if x < y:
+            return -1
+        if x > y:
+            return 1
+        return 0
+
+    @staticmethod
+    def max(x: float, y: float) -> float:
+        """Equivalente ao Float.max(float a, float b) do Java."""
+        return max(float(x), float(y))
+
+    @staticmethod
+    def min(x: float, y: float) -> float:
+        """Equivalente ao Float.min(float a, float b) do Java."""
+        return min(float(x), float(y))
+   
