@@ -1,117 +1,173 @@
+# JavaLang Python — GCS 2026.1
 
-# JavaLang Python - GCS 2026.1
+Projeto desenvolvido para a disciplina de Gerência de Configuração de Software, com o objetivo de implementar em Python uma adaptação das classes String, Integer e Float da especificação Java SE 8.
 
-Projeto final da disciplina de Gerência de Configuração de Software.
+O foco do trabalho não está apenas no código, mas também na aplicação prática de Gerência de Configuração de Software, incluindo controle de versão, issues, branches, commits semânticos, pull requests, revisão por pares, integração contínua, baselines, releases, auditoria e rastreabilidade.
 
-O objetivo é implementar, em Python 3.10+, classes inspiradas nas classes `JString`, `JInteger` e `JFloat` da especificação Java SE 8.
+## Equipe
 
-## Estrutura do Projeto
+* Efraim Nantes — Mantenedor
+* Pedro Mendes — Engenheiro de Qualidade
+* Thiago Nogueira — Gerente de Configuração
+* Rudimar Neves — Relator
+* Arthur Yano — Apoio em implementação e documentação
 
-A estrutura inicial do repositório foi criada no bootstrap do projeto e organizada para atender às exigências do trabalho de Gerência de Configuração de Software.
+## Classes implementadas
 
-Principais diretórios e arquivos:
+O projeto utiliza o pacote javalang/ para concentrar as classes adaptadas:
 
-* `.github/`: contém configurações do GitHub, incluindo templates de issues, template de Pull Request e workflow de integração contínua.
-* `.github/workflows/ci.yml`: define o pipeline de CI responsável por executar lint, testes e cobertura.
-* `javalang/`: contém os módulos principais do projeto, com as classes `JString`, `JInteger` e `JFloat`.
-* `tests/`: contém a suíte de testes automatizados do projeto.
-* `docs/`: contém a documentação de apoio ao processo de GCS, incluindo ADRs, adaptações, relatórios, auditorias e uso de IA.
-* `README.md`: apresenta o projeto, sua organização, instruções de execução e documentação principal.
-* `CHANGELOG.md`: registra mudanças relevantes por baseline/release.
-* `pyproject.toml`: contém configurações do projeto Python, testes, lint e cobertura.
+* JInteger
+* JFloat
+* JString
 
-Essa organização separa código, testes, documentação e automação, facilitando a rastreabilidade entre issues, commits, Pull Requests e baselines.
+As classes mantêm nomes de métodos em estilo Java, como parseInt, valueOf, charAt, compareTo, isNaN, entre outros, preservando a proposta de adaptação da especificação Java SE 8 para Python.
 
+## Estrutura do projeto
 
-## Convenções de Nomenclatura
-
-O projeto utiliza as classes:
-
-- JString
-- JInteger
-- JFloat
-
-O prefixo "J" foi adotado para evitar conflitos com tipos nativos do Python.
-
-Os métodos seguem o padrão camelCase para manter compatibilidade conceitual com a API Java.
+text
+.github/workflows/      Configuração de integração contínua
+docs/                   Documentação do processo, auditorias, ADRs e relatórios
+javalang/               Código-fonte das classes adaptadas
+tests/                  Testes automatizados
+README.md               Documentação principal do projeto
+CHANGELOG.md            Histórico de mudanças por baseline
+pyproject.toml          Configuração do projeto, pytest, coverage e ruff
 
 
-## Funcionalidades
-- Suporte à classe `JFloat` com validações IEEE 754 e conversões.
-## Processo de GCS
+## Instalação
 
-A equipe utiliza um fluxo baseado em GitHub Flow para controlar as alterações do projeto.
+Requisitos:
 
-O processo adotado é:
+* Python 3.10 ou superior
+* pip
 
-`Issue → Branch → Commit → Pull Request → Review → Merge`
+Para instalar as dependências do projeto:
 
-### Regras principais
-
-* Toda alteração relevante deve estar vinculada a uma issue.
-* Cada issue deve possuir uma branch própria.
-* Os commits devem seguir padrão semântico e referenciar a issue com `refs #N`.
-* A descrição do Pull Request deve conter `Closes #N`.
-* Nenhum integrante deve aprovar o próprio Pull Request.
-* Commits diretos na branch `main` não devem ocorrer após o bootstrap inicial.
-* Pull Requests devem ser revisados antes do merge.
-* Pull Requests devem estar com o CI verde antes do merge.
-* Um commit não deve implementar mais de 3 métodos.
-* Uma Pull Request não deve implementar mais de 7 métodos.
-
-### Baselines
-
-O projeto está organizado nas seguintes baselines:
-
-* `v0.1-functional`: estrutura inicial, documentação base, CI, papéis, itens de configuração e processo de trabalho;
-* `v0.2-jinteger`: implementação e testes da classe `JInteger`;
-* `v0.3-jfloat`: implementação e testes da classe `JFloat`;
-* `v0.4-jstring`: implementação e testes da classe `JString`;
-* `v1.0.0`: entrega final, auditorias, apresentação gravada e release final.
-
-As baselines devem ser acompanhadas por relatórios de status, issues resolvidas, Pull Requests mesclados, CI verde e tags/releases no GitHub.
-
-- [Relatório de Status - v0.2 JInteger](docs/relatorios/status-v0.2.md)
-
-## Organização da equipe
-
-| Integrante | Papel | Responsabilidades |
-|---|---|---|
-| Efraim Nantes | Mantenedor | Criação do repositório, proteção da branch main, criação de tags e releases, revisão de PRs e implementação de métodos da JString. |
-| Pedro Henrique Mendes | Engenheiro de Qualidade | Configuração da CI, testes, cobertura e implementação de métodos da JInteger. |
-| Thiago Nogueira | Gerente de Configuração | Documentação de itens de configuração, ADRs, adaptações, auditoria e implementação da JFloat. |
-| Rudimar Neves| Relator | Relatórios de status, release notes, CHANGELOG e métodos simples da JInteger. |
-| Arthur Yano | Desenvolvedor de apoio | Documentação de uso de IA, testes simples e métodos simples de JString e JFloat. |
-
-## Regras de Revisão de Código
-* Todos os integrantes da equipe participam ativamente das revisões de Pull Requests (PRs).
-* É estritamente proibido que um integrante aprove o seu próprio Pull Request.
-
-## Como executar os testes
-
-```bash
-pytest
-
-```
-## Documentação e Decisões Técnicas
-Para entender as diferenças arquiteturais e os motivos pelos quais alguns métodos foram adaptados, consulte nossa [Documentação de Adaptações Java para Python](docs/adaptacoes.md).
-
-## Como executar o linter
-```bash
-ruff check .
-```
-## Baselines do Projeto
-
-O projeto é dividido em entregas organizadas (Baselines). Atualmente estamos na primeira fase[cite: 1]:
-
-* **v0.1-functional:** Estrutura inicial do repositório, validação do CI (Ruff, Pytest, Coverage) e formalização do fluxo de trabalho[cite: 1].
-
-Para entender como contribuir, criar branches e enviar seu código, leia obrigatoriamente o nosso [Guia de Contribuição](CONTRIBUTING.md) e o [ADR 0002 de Ramificação](docs/adr/0002-modelo-ramificacao.md)[cite: 1].
+bash
+python -m pip install -e .
 
 
+Caso necessário, instalar ferramentas de teste e lint manualmente:
 
-## Decisões de Arquitetura e Adaptações
+bash
+python -m pip install pytest pytest-cov ruff
 
-Como o Java e o Python possuem ecossistemas e lógicas de gestão de memória diferentes, algumas funcionalidades da classe `String` foram adaptadas para aproveitar os recursos nativos do Python.
 
-Para ler a lista completa de métodos adaptados, comportamentos alterados (como RegEx e Unicode) e justificativas, consulte o nosso documento de [Adaptações do Java para Python (por Arthur Yano)](docs/adaptacoes.md).
+## Execução dos testes
+
+Para executar toda a suíte de testes:
+
+bash
+python -m pytest
+
+
+Para executar testes com relatório de cobertura:
+
+bash
+python -m pytest --cov=javalang
+
+
+## Execução do lint
+
+Para executar o Ruff:
+
+bash
+python -m ruff check javalang/ tests/
+
+
+## Integração contínua
+
+O projeto utiliza GitHub Actions para executar validações automáticas em pull requests e atualizações da branch principal.
+
+O workflow executa:
+
+* instalação das dependências;
+* verificação com Ruff;
+* execução dos testes com Pytest;
+* verificação de cobertura.
+
+Pull requests só devem ser mesclados quando o CI estiver verde e houver revisão aprovada por outro integrante.
+
+## Processo de trabalho
+
+O projeto segue o fluxo:
+
+text
+Issue → Branch → Commit → Pull Request → Review → CI → Merge → Baseline/Release
+
+
+Regras adotadas:
+
+* Toda alteração não trivial deve nascer em uma issue.
+* Cada branch deve estar associada a uma issue.
+* Commits devem seguir padrão semântico e referenciar a issue.
+* Pull requests devem fechar issues com Closes #N.
+* Autoaprovação de PR não é permitida.
+* PRs com CI vermelho não devem ser mesclados.
+* Baselines são formalizadas por tags e releases no GitHub.
+
+## Baselines
+
+As baselines do projeto são:
+
+* v0.1-functional — estrutura inicial, processo de GCS, CI e documentação base.
+* v0.2-jinteger — implementação, testes e documentação da classe JInteger.
+* v0.3-jfloat — implementação, testes e documentação da classe JFloat.
+* v0.4-jstring — implementação, testes e documentação da classe JString.
+* v1.0.0 — entrega final, auditoria, apresentação e release final.
+
+## Documentação
+
+Documentos principais:
+
+* docs/adaptacoes.md — adaptações técnicas entre Java SE 8 e Python.
+* docs/itens-de-configuracao.md — itens de configuração do projeto.
+* docs/uso-de-ia.md — registro de uso de IA generativa.
+* docs/auditoria.md — auditoria interna final.
+* docs/auditoria-cruzada.md — auditoria cruzada.
+* docs/relatorios/status-v0.1.md — status da baseline inicial.
+* docs/relatorios/status-v0.2.md — status da baseline JInteger.
+* docs/relatorios/status-v0.3.md — status da baseline JFloat.
+* docs/relatorios/status-v0.4.md — status da baseline JString.
+* docs/relatorios/status-v1.0.md — relatório final da entrega.
+
+## Adaptações Java para Python
+
+Como Java e Python possuem diferenças importantes de tipagem, sobrecarga de métodos, representação numérica, Unicode, charset, locale e gerenciamento de memória, algumas funcionalidades foram adaptadas.
+
+As decisões técnicas estão registradas em:
+
+text
+docs/adaptacoes.md
+
+
+Métodos não implementados integralmente ou implementados de forma adaptada foram documentados com justificativa técnica e alternativa equivalente quando aplicável.
+
+## Apresentação gravada
+
+Link da apresentação final:
+
+text
+INSERIR_LINK_DA_APRESENTACAO
+
+
+A apresentação deve demonstrar o processo de GCS, as baselines, a rastreabilidade, os principais artefatos do repositório, a auditoria e as funcionalidades implementadas.
+
+## Como auditar o projeto
+
+Para auditar o projeto, recomenda-se verificar:
+
+1. Issues criadas por baseline.
+2. Branches associadas às issues.
+3. Commits com referência refs #N.
+4. Pull requests com Closes #N.
+5. Revisões feitas por outro integrante.
+6. Execuções do GitHub Actions.
+7. Tags e releases das baselines.
+8. Documentos em docs/.
+9. Relatórios de status por baseline.
+10. Auditorias finais.
+
+## Status final
+
+O projeto consolida as classes JInteger, JFloat e JString com testes automatizados, documentação de adaptações, baselines versionadas e evidências do processo de Gerência de Configuração de Software.
