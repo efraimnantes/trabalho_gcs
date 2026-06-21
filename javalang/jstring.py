@@ -177,3 +177,38 @@ class JString:
         dada pela string de substituição.
         """
         return re.sub(regex, replacement, self.value)    
+
+
+
+    def compareTo(self, anotherString: str) -> int:
+        """
+        Compara duas strings lexicograficamente.
+        Retorna 0 se forem iguais, -1 se for menor, ou 1 se for maior.
+        """
+        if self.value == anotherString:
+            return 0
+        elif self.value < anotherString:
+            return -1
+        else:
+            return 1
+
+    def compareToIgnoreCase(self, anotherString: str) -> int:
+        """
+        Compara duas strings lexicograficamente, ignorando diferenças de caixa.
+        """
+        val_lower = self.value.casefold()
+        target_lower = anotherString.casefold()
+        
+        if val_lower == target_lower:
+            return 0
+        elif val_lower < target_lower:
+            return -1
+        else:
+            return 1
+
+    def contentEquals(self, cs: str) -> bool:
+        """
+        Compara a string com o CharSequence especificado.
+        No Python, verificamos a igualdade direta com a string de destino.
+        """
+        return self.value == cs    

@@ -222,3 +222,28 @@ def test_replace_all_regex():
 
     result = jstr.replaceAll("\\d+", "[DATA]")
     assert result == "O ano é [DATA], logo será [DATA]."
+
+
+
+# novos testes para comparação ordenada
+
+def test_compare_to():
+    jstr = JString("banana")
+
+    assert jstr.compareTo("banana") == 0
+    assert jstr.compareTo("cebola") < 0
+    assert jstr.compareTo("abacaxi") > 0
+
+def test_compare_to_ignore_case():
+    jstr = JString("Python")
+
+    assert jstr.compareToIgnoreCase("PYTHON") == 0
+    assert jstr.compareToIgnoreCase("python") == 0
+    assert jstr.compareToIgnoreCase("Zebra") < 0
+    assert jstr.compareToIgnoreCase("Abelha") > 0
+
+def test_content_equals():
+    jstr = JString("hello world")
+    
+    assert jstr.contentEquals("hello world") is True
+    assert jstr.contentEquals("hello") is False
