@@ -107,3 +107,28 @@ class JString:
             return self._value.endswith(suffix.value)
 
         return self._value.endswith(str(suffix))
+        
+
+    def lastIndexOf(self, target: Union[str, int], fromIndex: int = None) -> int:
+        """
+        Equivalente aos métodos do Java:
+        - lastIndexOf(String str)
+        - lastIndexOf(String str, int fromIndex)
+        - lastIndexOf(int ch)
+        - lastIndexOf(int ch, int fromIndex)
+        """
+        if isinstance(target, int):
+            target_str = chr(target)
+        elif isinstance(target, str):
+            target_str = target
+        else:
+            raise TypeError("Target must be a string or an integer (Unicode code point)")
+        
+        if fromIndex is None:
+            # Busca a última ocorrência em toda a string
+            return self.value.rfind(target_str)
+        else:
+            # O Java procura da direita para a esquerda começando em 'fromIndex'.
+            # No Python, limitamos a string do início (0) até (fromIndex + tamanho do alvo).
+            limit = fromIndex + len(target_str)
+            return self.value.rfind(target_str, 0, limit)    
