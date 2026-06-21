@@ -57,3 +57,23 @@ def test_jstring_char_at_invalid():
 
     with pytest.raises(IndexError):
         js.charAt(3)
+
+def test_jstring_comparison():
+    js1 = JString("Java")
+    js2 = JString("Java")
+    js3 = JString("java")
+    js4 = JString("Python")
+    
+    # Testando equals()
+    assert js1.equals(js2) is True
+    assert js1.equals(js3) is False
+    assert js1.equals("Java") is True
+    assert js1.equals(js4) is False
+    
+    # Testando equalsIgnoreCase()
+    assert js1.equalsIgnoreCase(js3) is True
+    assert js1.equalsIgnoreCase("JAVA") is True
+    assert js1.equalsIgnoreCase(js4) is False
+    
+    # Testando hashCode / __hash__
+    assert hash(js1) == hash(js2)

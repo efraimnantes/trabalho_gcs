@@ -41,3 +41,22 @@ class JString:
 
     def trim(self):
         return JString(self._value.strip())
+
+    def equals(self, anObject: object) -> bool:
+        if isinstance(anObject, JString):
+            return self._value == anObject._value
+        if isinstance(anObject, str):
+            return self._value == anObject
+        return False
+
+    def equalsIgnoreCase(self, anotherString: "JString | str") -> bool:
+        if isinstance(anotherString, JString):
+            return self._value.lower() == anotherString._value.lower()
+        if isinstance(anotherString, str):
+            return self._value.lower() == anotherString.lower()
+        return False
+
+    def __hash__(self) -> int:
+        # No Python, para adaptar o hashCode() do Java de forma nativa,
+        # implementamos o método especial __hash__
+        return hash(self._value)
