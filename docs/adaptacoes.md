@@ -112,3 +112,8 @@ Na implementação da classe `JString`, os métodos `replace(char, char)` e `rep
 ## JString - Tratamento de Charsets (getBytes)
 - **Comportamento Padrão:** No Java, `getBytes()` sem argumentos utiliza o *charset* padrão do sistema operativo (o que muitas vezes causa bugs de portabilidade). No Python, optámos por definir explicitamente o **UTF-8** como padrão no método `.getBytes()`, garantindo um comportamento previsível em qualquer sistema.
 - **Exceções:** No Java, passar um charset inválido como argumento lança uma `UnsupportedEncodingException`. Na nossa implementação Python, delegamos a conversão para o método `.encode()` nativo da linguagem, que lançará um erro `LookupError` caso o charset não seja reconhecido. Decidimos manter a exceção nativa do Python por questões de simplicidade e integração com a linguagem.
+
+
+## JString - Métodos de Expressão Regular (Regex)
+- **Correspondência Total (`matches`):** No Java, o método `matches()` exige que a string inteira obedeça à expressão regular passada. Em Python, a função `re.match()` avalia apenas o início da string, enquanto `re.search()` busca em qualquer parte. Para replicar o comportamento exato do Java sem forçar âncoras (`^` e `$`), utilizámos o método nativo `re.fullmatch()`.
+- **Substituições (`replaceFirst` e `replaceAll`):** Estes métodos foram mapeados diretamente para a função `re.sub()` do Python. A limitação de `replaceFirst` foi alcançada facilmente através da flag nativa `count=1` no próprio método `sub()`.

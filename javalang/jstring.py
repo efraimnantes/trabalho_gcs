@@ -1,5 +1,5 @@
 from typing import Union
-
+import re
 
 class JString:
     """Adaptação inicial da classe java.lang.String para Python."""
@@ -154,3 +154,26 @@ class JString:
         Utiliza 'utf-8' como padrão, similar ao comportamento moderno.
         """
         return self.value.encode(charset)
+
+
+
+    def matches(self, regex: str) -> bool:
+        """
+        Informa se esta string corresponde à expressão regular fornecida.
+        O comportamento do Java exige correspondência total da string.
+        """
+        return bool(re.fullmatch(regex, self.value))
+
+    def replaceFirst(self, regex: str, replacement: str) -> str:
+        """
+        Substitui a primeira substring que corresponde à expressão regular
+        dada pela string de substituição.
+        """
+        return re.sub(regex, replacement, self.value, count=1)
+
+    def replaceAll(self, regex: str, replacement: str) -> str:
+        """
+        Substitui cada substring que corresponde à expressão regular
+        dada pela string de substituição.
+        """
+        return re.sub(regex, replacement, self.value)    
