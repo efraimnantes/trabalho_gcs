@@ -49,7 +49,7 @@ class JString:
             return self._value == anObject
         return False
 
-    def equalsIgnoreCase(self, anotherString: JString | str) -> bool:
+    def equalsIgnoreCase(self, anotherString: "JString | str") -> bool:
         if isinstance(anotherString, JString):
             return self._value.lower() == anotherString._value.lower()
         if isinstance(anotherString, str):
