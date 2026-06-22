@@ -147,9 +147,7 @@ Métodos não implementados integralmente ou implementados de forma adaptada for
 
 Link da apresentação final:
 
-text
-INSERIR_LINK_DA_APRESENTACAO
-
+https://drive.google.com/file/d/1QPv6vNT5rdGM-ArVkuV_8yNytDHOngG2/view?usp=sharing
 
 A apresentação deve demonstrar o processo de GCS, as baselines, a rastreabilidade, os principais artefatos do repositório, a auditoria e as funcionalidades implementadas.
 
