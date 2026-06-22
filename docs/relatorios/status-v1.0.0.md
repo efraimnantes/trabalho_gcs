@@ -98,8 +98,8 @@ As adaptações entre Java SE 8 e Python foram registradas em: `docs/adaptacoes.
 As validações finais do projeto indicaram:
 
 * **Ruff:** execução concluída sem erros.
-* **Pytest:** 55 testes aprovados.
-* **Cobertura total:** 89%.
+* **Pytest:** 71 testes aprovados.
+* **Cobertura total:** 90%.
 * **CI:** executado por meio do GitHub Actions.
 
 Essas métricas demonstram que o projeto possui suíte de testes automatizada, verificação de estilo e validação contínua das alterações.
